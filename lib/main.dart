@@ -8,7 +8,7 @@ void main() async {
   try {
     Logger().log(
       Level.info,
-      'app starts here',
+      'App starts here',
     );
   } catch (e) {
     Logger().log(
