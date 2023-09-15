@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resto_flow/blocs/auth_bloc.dart';
+import 'package:resto_flow/pages/home_page.dart';
+import 'package:resto_flow/repositories/user_repository.dart';
 import 'config/ngrok.dart';
 
 void main() async {
-  final link = await getServerLink();
-
-  try {
-    Logger().log(
-      Level.info,
-      'App starts here',
-    );
-  } catch (e) {
-    Logger().log(
-      Level.error,
-      e.toString(),
-    );
-  }
-
   runApp(
     MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Text(
-          link,
-          style: const TextStyle(color: Colors.black),
-        ),
+      debugShowCheckedModeBanner: false,
+      home: FutureBuilder(
+        future: getServerLink(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Scaffold(
+              body: Center(
+                child: Text(
+                    "Check your internet connection or try again later.\n ${snapshot.error.toString()}"),
+              ),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.done) {
+            return BlocProvider(
+              create: (context) => AuthBloc(
+                userRepository: UserRepository(apiUrl: snapshot.data),
+              ),
+              child: const HomePage(),
+            );
+          }
+
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        },
       ),
     ),
   );
