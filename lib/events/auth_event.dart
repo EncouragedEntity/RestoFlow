@@ -5,11 +5,15 @@ abstract class AuthEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AuthSignInEvent extends AuthEvent {
+class AuthWantToLogInEvent extends AuthEvent {}
+
+class AuthWantToSignUpEvent extends AuthEvent {}
+
+class AuthLogInEvent extends AuthEvent {
   final String email;
   final String password;
 
-  AuthSignInEvent({required this.email, required this.password});
+  AuthLogInEvent({required this.email, required this.password});
 
   @override
   List<Object> get props => [email, password];
@@ -26,3 +30,12 @@ class AuthSignUpEvent extends AuthEvent {
 }
 
 class AuthSignOutEvent extends AuthEvent {}
+
+class AuthErrorEvent extends AuthEvent {
+  final String errorMessage;
+
+  AuthErrorEvent({required this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+}
