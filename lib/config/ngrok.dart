@@ -23,6 +23,10 @@ Future<Map<String, dynamic>> getTunnels() async {
 }
 
 Future<String> getServerLink() async {
-  final tunnels = await getTunnels();
-  return tunnels['tunnels'][0]['public_url'];
+  try {
+    final tunnels = await getTunnels();
+    return tunnels['tunnels'][0]['public_url'];
+  } on Exception {
+    throw Exception("Failed to retrieve tunnels data");
+  }
 }
