@@ -6,29 +6,35 @@ import '../repositories/user_repository.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository;
-  AuthBloc({required this.userRepository}) : super(AuthInitial());
+  AuthBloc({required this.userRepository}) : super(AuthUnauthenticated()) {
+    on<AuthWantToLogInEvent>((event, emit) {
+      emit(AuthLoggingIn());
+    });
 
-  Stream<AuthState> mapEventToState(AuthEvent event) async* {
-    if (event is AuthSignInEvent) {
-      yield AuthLoading();
+    on<AuthLogInEvent>((event, emit) async {
+      emit(AuthLoading());
       try {
         final user = await userRepository.register(event.email, event.password);
-        yield AuthAuthenticated(user);
+        emit(AuthAuthenticated(user));
       } catch (error) {
-        yield AuthFailure(error.toString());
+        emit(AuthFailure(error.toString()));
       }
-    } else if (event is AuthSignUpEvent) {
-      yield AuthLoading();
+    });
+
+    on<AuthSignUpEvent>((event, emit) async {
+      emit(AuthLoading());
       try {
         final user = await userRepository.logIn(event.email, event.password);
-        yield AuthAuthenticated(user);
+        emit(AuthAuthenticated(user));
       } catch (error) {
-        yield AuthFailure(error.toString());
+        emit(AuthFailure(error.toString()));
       }
-    } else if (event is AuthSignOutEvent) {
-      yield AuthLoading();
+    });
+
+    on<AuthSignOutEvent>((event, emit) async {
+      emit(AuthLoading());
       await userRepository.signOut();
-      yield AuthUnauthenticated();
-    }
+      emit(AuthUnauthenticated());
+    });
   }
 }
