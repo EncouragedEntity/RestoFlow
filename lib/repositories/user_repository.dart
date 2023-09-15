@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../models/user.dart';
 
 class UserRepository {
-  final String apiUrl;
+  final String? apiUrl;
 
   UserRepository({required this.apiUrl});
 
