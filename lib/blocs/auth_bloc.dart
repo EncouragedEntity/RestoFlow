@@ -7,6 +7,10 @@ import '../repositories/user_repository.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository;
   AuthBloc({required this.userRepository}) : super(AuthUnauthenticated()) {
+    on<AuthWantToSignUpEvent>((event, emit) {
+      emit(AuthSigningUp());
+    });
+
     on<AuthWantToLogInEvent>((event, emit) {
       emit(AuthLoggingIn());
     });
@@ -14,7 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLogInEvent>((event, emit) async {
       emit(AuthLoading());
       try {
-        final user = await userRepository.register(event.email, event.password);
+        final user = await userRepository.logIn(event.email, event.password);
         emit(AuthAuthenticated(user));
       } catch (error) {
         emit(AuthFailure(error.toString()));
@@ -24,7 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignUpEvent>((event, emit) async {
       emit(AuthLoading());
       try {
-        final user = await userRepository.logIn(event.email, event.password);
+        final user = await userRepository.register(event.email, event.password);
         emit(AuthAuthenticated(user));
       } catch (error) {
         emit(AuthFailure(error.toString()));

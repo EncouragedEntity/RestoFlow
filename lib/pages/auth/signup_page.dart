@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({super.key, required this.controller});
-  final PageController controller;
+import '../../blocs/auth_bloc.dart';
+import '../../events/auth_event.dart';
+
+class SingUpPage extends StatefulWidget {
+  const SingUpPage({super.key});
   @override
-  State<SingUpScreen> createState() => _SingUpScreenState();
+  State<SingUpPage> createState() => _SingUpPageState();
 }
 
-class _SingUpScreenState extends State<SingUpScreen> {
+class _SingUpPageState extends State<SingUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final TextEditingController _repassController = TextEditingController();
@@ -15,6 +18,16 @@ class _SingUpScreenState extends State<SingUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          color: Colors.black,
+          onPressed: () {
+            context.read<AuthBloc>().add(AuthSignOutEvent());
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,11 +92,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 const SizedBox(
                   height: 17,
                 ),
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: 147,
                       height: 56,
                       child: TextField(
                         controller: _passController,
@@ -96,7 +108,6 @@ class _SingUpScreenState extends State<SingUpScreen> {
                         ),
                         decoration: const InputDecoration(
                           labelText: 'Password',
-                          hintText: 'Create Password',
                           hintStyle: TextStyle(
                             color: Color(0xFF837E93),
                             fontSize: 10,
@@ -126,8 +137,10 @@ class _SingUpScreenState extends State<SingUpScreen> {
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     SizedBox(
-                      width: 147,
                       height: 56,
                       child: TextField(
                         controller: _repassController,
@@ -139,8 +152,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                           fontWeight: FontWeight.w400,
                         ),
                         decoration: const InputDecoration(
-                          labelText: 'Password',
-                          hintText: 'Confirm Password',
+                          labelText: 'Confirm password',
                           hintStyle: TextStyle(
                             color: Color(0xFF837E93),
                             fontSize: 10,
@@ -182,9 +194,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        widget.controller.animateToPage(2,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.ease);
+                        //TODO register event
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF9F7BFF),
@@ -207,7 +217,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 Row(
                   children: [
                     const Text(
-                      ' have an account?',
+                      'Don\'t have an account?',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF837E93),
@@ -221,9 +231,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        widget.controller.animateToPage(0,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.ease);
+                        context.read<AuthBloc>().add(AuthWantToLogInEvent());
                       },
                       child: const Text(
                         'Log In ',

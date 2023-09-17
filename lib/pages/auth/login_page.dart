@@ -18,7 +18,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
+          color: Colors.black,
           onPressed: () {
             context.read<AuthBloc>().add(AuthSignOutEvent());
           },
@@ -128,12 +130,14 @@ class _LoginPageState extends State<LoginPage> {
                     width: 329,
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO login event
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF9F7BFF),
                       ),
                       child: const Text(
-                        'Sign In',
+                        'Log in',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 15,
@@ -163,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        // TODO transfer to SIGN UP page
+                        context.read<AuthBloc>().add(AuthWantToSignUpEvent());
                       },
                       child: const Text(
                         'Sign Up',
@@ -179,15 +183,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(
                   height: 15,
-                ),
-                const Text(
-                  'Forget Password?',
-                  style: TextStyle(
-                    color: Color(0xFF755DC1),
-                    fontSize: 13,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
                 ),
               ],
             ),

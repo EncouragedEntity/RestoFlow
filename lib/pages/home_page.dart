@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
+import 'package:resto_flow/pages/auth/signup_page.dart';
 import 'package:resto_flow/pages/qr_scanner_page.dart';
 import 'package:resto_flow/states/auth_state.dart';
 
@@ -21,9 +22,13 @@ class HomePage extends StatelessWidget {
           );
         } else if (state is AuthLoggingIn) {
           return const LoginPage();
+        } else if (state is AuthSigningUp) {
+          return const SingUpPage();
         } else if (state is AuthAuthenticated) {
+          // TODO pass bool "Whether the user is Authenticated or not"
           return const ScannerPage();
         } else if (state is AuthUnauthenticated) {
+          // TODO pass bool "Whether the user is Authenticated or not"
           return const ScannerPage();
         } else if (state is AuthFailure) {
           //TODO ErrorPage or ErrorDialog
