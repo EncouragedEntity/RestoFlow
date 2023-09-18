@@ -26,7 +26,7 @@ Future<String> getServerLink() async {
   try {
     final tunnels = await getTunnels();
     return tunnels['tunnels'][0]['public_url'];
-  } on Exception {
+  } on RangeError {
     throw Exception("Failed to retrieve tunnels data");
   }
 }

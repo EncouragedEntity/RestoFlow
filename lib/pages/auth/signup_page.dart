@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/auth_bloc.dart';
 import '../../events/auth_event.dart';
 
-class SingUpPage extends StatefulWidget {
-  const SingUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
   @override
-  State<SingUpPage> createState() => _SingUpPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SingUpPageState extends State<SingUpPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final TextEditingController _repassController = TextEditingController();
