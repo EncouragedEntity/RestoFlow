@@ -17,18 +17,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          color: Colors.black,
-          onPressed: () {
-            context.read<AuthBloc>().add(AuthSignOutEvent());
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-      ),
       backgroundColor: Colors.white,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
