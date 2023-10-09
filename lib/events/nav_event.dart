@@ -1,6 +1,7 @@
 enum NavEvent {
-  scanner,
   menu,
   order,
+  scanner,
+  somePage,
   profile,
 }
