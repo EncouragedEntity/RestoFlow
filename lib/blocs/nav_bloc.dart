@@ -16,7 +16,7 @@ class NavBloc extends Bloc<NavEvent, int> {
           case NavEvent.scanner:
             emit(2);
             return;
-          case NavEvent.somePage: //TODO change
+          case NavEvent.history:
             emit(3);
             return;
           case NavEvent.profile:

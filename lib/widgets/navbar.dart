@@ -15,7 +15,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
-      style: TabStyle.fixed,
+      style: TabStyle.react,
       initialActiveIndex: initialIndex,
       onTap: (index) {
         context.read<NavBloc>().add(NavEvent.values[index]);
@@ -34,8 +34,8 @@ class NavBar extends StatelessWidget {
           title: 'Scan QR',
         ),
         TabItem(
-          icon: Icon(Icons.abc),
-          title: 'Some page',
+          icon: Icon(Icons.history),
+          title: 'History',
         ),
         TabItem(
           icon: Icon(Icons.person),
