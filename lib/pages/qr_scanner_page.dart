@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import '../blocs/auth_bloc.dart';
-import '../events/auth_event.dart';
-
 class ScannerPage extends StatefulWidget {
-  const ScannerPage({Key? key}) : super(key: key);
+  const ScannerPage({super.key});
 
   @override
   State<ScannerPage> createState() => _ScannerPageState();
@@ -23,6 +20,7 @@ class _ScannerPageState extends State<ScannerPage> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
+        Logger().log(Level.info, result?.code ?? "");
       });
     });
   }
@@ -78,18 +76,6 @@ class _ScannerPageState extends State<ScannerPage> {
               ],
             ),
           ),
-          Positioned(
-            right: 10,
-            child: SafeArea(
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  context.read<AuthBloc>().add(AuthWantToLogInEvent());
-                },
-                label: const Text('Login'),
-                icon: const Icon(Icons.login),
-              ),
-            ),
-          )
         ],
       ),
     );

@@ -33,7 +33,8 @@ void main() async {
               providers: [
                 BlocProvider<AuthBloc>(
                   create: (context) => AuthBloc(
-                    userRepository: UserRepository(apiUrl: snapshot.data),
+                    userRepository:
+                        UserRepository(apiUrl: snapshot.data ?? "error"),
                   ),
                 ),
                 BlocProvider<NavBloc>(
