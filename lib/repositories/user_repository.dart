@@ -37,9 +37,7 @@ class UserRepository {
       firstName: "",
       lastName: "",
       authorities: ["USER"],
-      deleted: false,
       password: password,
-      restaurantAddress: "",
     );
 
     final userJson = user.toJson();

@@ -10,9 +10,9 @@ class User {
   final int bonusScore;
   final bool deleted;
   final String password;
-  final String restaurantAddress;
-  final int restaurantId;
-  final String restaurantName;
+  final String? restaurantAddress;
+  final int? restaurantId;
+  final String? restaurantName;
 
   User({
     this.id,
@@ -24,9 +24,9 @@ class User {
     this.bonusScore = 0,
     this.deleted = false,
     required this.password,
-    this.restaurantAddress = "",
-    this.restaurantId = 0,
-    this.restaurantName = "",
+    this.restaurantAddress,
+    this.restaurantId,
+    this.restaurantName,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -61,9 +61,9 @@ class User {
       'bonusScore': bonusScore,
       'deleted': deleted,
       'password': password,
-      'restaurantAddress': restaurantAddress,
+      'restaurantAddress': null,
       'restaurantId': null,
-      'restaurantName': restaurantName,
+      'restaurantName': null,
     };
   }
 }
