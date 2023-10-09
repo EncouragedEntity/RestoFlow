@@ -17,7 +17,7 @@ Future<Map<String, dynamic>> getTunnels() async {
     final jsonData = jsonDecode(response.body);
     return jsonData;
   } else {
-    Logger().log(Level.error, 'Error');
+    Logger().e('Error');
     return {};
   }
 }
