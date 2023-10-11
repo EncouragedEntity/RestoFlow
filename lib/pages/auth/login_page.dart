@@ -122,7 +122,10 @@ class _LoginPageState extends State<LoginPage> {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        // TODO login event
+                        context.read<AuthBloc>().add(AuthLogInEvent(
+                              email: _emailController.text,
+                              password: _passController.text,
+                            ));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF9F7BFF),

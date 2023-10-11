@@ -40,9 +40,9 @@ class User {
       bonusScore: json['bonusScore'] as int? ?? 0,
       deleted: json['deleted'] as bool? ?? false,
       password: json['password'] as String,
-      restaurantAddress: json['restaurantAddress'] as String,
-      restaurantId: json['restaurantId'] as int,
-      restaurantName: json['restaurantName'] as String,
+      restaurantAddress: json['restaurantAddress'] as String?,
+      restaurantId: json['restaurantId'] as int?,
+      restaurantName: json['restaurantName'] as String?,
     );
   }
 
