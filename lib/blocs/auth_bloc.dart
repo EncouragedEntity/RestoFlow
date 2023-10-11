@@ -11,8 +11,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthSigningUp());
     });
 
-    on<AuthWantToLogInEvent>((event, emit) {
-      emit(AuthLoggingIn());
+    on<AuthWantToLogInEvent>((event, emit) async {
+      final user = await userRepository.automaticLogin();
+      if (user == null) {
+        emit(AuthLoggingIn());
+        return;
+      }
+      emit(AuthAuthenticated(user));
     });
 
     on<AuthLogInEvent>((event, emit) async {
@@ -37,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<AuthSignOutEvent>((event, emit) async {
       emit(AuthLoading());
-      await userRepository.signOut();
+      await userRepository.logOut();
       emit(AuthUnauthenticated());
     });
   }
