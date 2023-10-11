@@ -14,7 +14,10 @@ class ProfilePage extends StatelessWidget {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is AuthAuthenticated) {
-          return buildUserProfile(state.user);
+          return buildUserProfile(
+            state.user,
+            context,
+          );
         } else {
           context.read<AuthBloc>().add(AuthWantToLogInEvent());
         }
@@ -25,7 +28,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buildUserProfile(User user) {
+  Widget buildUserProfile(User user, BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -41,6 +44,12 @@ class ProfilePage extends StatelessWidget {
           Text("Authorities: ${user.authorities.join(", ")}"),
           Text("Bonus Score: ${user.bonusScore}"),
           Text("Deleted: ${user.deleted ? 'Yes' : 'No'}"),
+          ElevatedButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(AuthSignOutEvent());
+            },
+            child: const Text('Log out'),
+          ),
         ],
       ),
     );

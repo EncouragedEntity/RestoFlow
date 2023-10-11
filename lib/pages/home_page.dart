@@ -33,9 +33,9 @@ class _HomePageState extends State<HomePage> {
                   child: CircularProgressIndicator(),
                 );
               } else if (authState is AuthLoggingIn) {
-                return const LoginPage();
+                currentPage = const LoginPage();
               } else if (authState is AuthSigningUp) {
-                return const SignUpPage();
+                currentPage = const SignUpPage();
               } else {
                 if (navState == 0) {
                   // TODO: Handle navigation to Menu Page
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                   currentPage = const ScannerPage();
                   selectedIndex = 2;
                 } else if (navState == 3) {
-                  // TODO: Handle navigation to Some Page
+                  // TODO: Handle navigation to Order history page
                   currentPage = const Placeholder();
                   selectedIndex = 3;
                 } else if (navState == 4) {

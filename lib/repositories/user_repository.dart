@@ -113,6 +113,9 @@ class UserRepository {
 
   /// Logs user out of the system
   Future<void> logOut() async {
-    // TODO signOut logic
+    const storage = FlutterSecureStorage();
+
+    currentUser = null;
+    await storage.delete(key: "accessToken");
   }
 }

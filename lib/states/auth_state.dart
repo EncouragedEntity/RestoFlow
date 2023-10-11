@@ -12,6 +12,8 @@ class AuthSigningUp extends AuthState {}
 
 class AuthLoading extends AuthState {}
 
+class AuthSignedOut extends AuthState {}
+
 class AuthAuthenticated extends AuthState {
   final User user;
 
