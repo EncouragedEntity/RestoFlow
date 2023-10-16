@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../blocs/auth_bloc.dart';
-import '../../events/auth_event.dart';
+import 'package:resto_flow/blocs/auth_bloc.dart';
+import 'package:resto_flow/events/auth_event.dart';
+import 'package:resto_flow/generated/l10n.dart';
+import 'package:resto_flow/widgets/auth/email_text_field.dart';
+import 'package:resto_flow/widgets/auth/pass_text_field.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -20,20 +22,10 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          color: Colors.black,
-          onPressed: () {
-            context.read<AuthBloc>().add(AuthSignOutEvent());
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-      ),
-      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
@@ -45,10 +37,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 textDirection: TextDirection.ltr,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Sign up',
+                  Text(
+                    S.of(context).sign_up,
                     style: TextStyle(
-                      color: Color(0xFF755DC1),
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontSize: 27,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500,
@@ -59,53 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   SizedBox(
                     height: 56,
-                    child: TextFormField(
-                      controller: _emailController,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Color(0xFF393939),
-                        fontSize: 13,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
-                      ),
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
-                          color: Color(0xFF755DC1),
-                          fontSize: 15,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xFF837E93),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color(0xFF9F7BFF),
-                          ),
-                        ),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email address';
-                        }
-
-                        final emailRegExp =
-                            RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
-
-                        if (!emailRegExp.hasMatch(value)) {
-                          return 'Please enter a valid email address';
-                        }
-
-                        return null;
-                      },
-                    ),
+                    child: EmailTextField(emailController: _emailController),
                   ),
                   const SizedBox(
                     height: 17,
@@ -115,117 +61,21 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       SizedBox(
                         height: 56,
-                        child: TextFormField(
-                          controller: _passController,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(0xFF393939),
-                            fontSize: 13,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                          ),
-                          decoration: const InputDecoration(
-                            labelText: 'Password',
-                            hintStyle: TextStyle(
-                              color: Color(0xFF837E93),
-                              fontSize: 10,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w400,
-                            ),
-                            labelStyle: TextStyle(
-                              color: Color(0xFF755DC1),
-                              fontSize: 15,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: Color(0xFF837E93),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: Color(0xFF9F7BFF),
-                              ),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your password';
-                            }
-
-                            if (value.length < 8) {
-                              return 'Password must be at least 8 characters long';
-                            }
-
-                            return null;
-                          },
+                        child: PasswordTextField(
+                          passController: _passController,
+                          titleText: S.of(context).password,
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
-                        height: 56,
-                        child: TextFormField(
-                          controller: _repassController,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color(0xFF393939),
-                            fontSize: 13,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                          ),
-                          decoration: const InputDecoration(
-                            labelText: 'Confirm password',
-                            hintStyle: TextStyle(
-                              color: Color(0xFF837E93),
-                              fontSize: 10,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w400,
-                            ),
-                            labelStyle: TextStyle(
-                              color: Color(0xFF755DC1),
-                              fontSize: 15,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: Color(0xFF837E93),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              borderSide: BorderSide(
-                                width: 1,
-                                color: Color(0xFF9F7BFF),
-                              ),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please confirm your password';
-                            }
-
-                            if (value != _passController.text) {
-                              return 'Passwords do not match';
-                            }
-
-                            return null;
-                          },
-                        ),
-                      ),
+                          height: 56,
+                          child: PasswordTextField(
+                            passController: _repassController,
+                            rePassController: _passController,
+                            titleText: S.of(context).confirm_password,
+                          )),
                     ],
                   ),
                   const SizedBox(
@@ -239,7 +89,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            //TODO register event
                             context.read<AuthBloc>().add(AuthSignUpEvent(
                                   email: _emailController.text,
                                   password: _passController.text,
@@ -247,12 +96,13 @@ class _SignUpPageState extends State<SignUpPage> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF9F7BFF),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
                         ),
-                        child: const Text(
-                          'Create account',
+                        child: Text(
+                          S.of(context).sign_up,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onPrimary,
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
@@ -266,11 +116,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Row(
                     children: [
-                      const Text(
-                        'Don\'t have an account?',
+                      Text(
+                        S.of(context).have_account,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xFF837E93),
+                          color: Theme.of(context).colorScheme.onPrimary,
                           fontSize: 13,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w500,
@@ -283,10 +133,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         onTap: () {
                           context.read<AuthBloc>().add(AuthWantToLogInEvent());
                         },
-                        child: const Text(
-                          'Log In ',
+                        child: Text(
+                          S.of(context).log_in,
                           style: TextStyle(
-                            color: Color(0xFF755DC1),
+                            color: Theme.of(context).hintColor,
                             fontSize: 13,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
