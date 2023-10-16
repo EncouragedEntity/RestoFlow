@@ -1,0 +1,23 @@
+{
+    "error": "Помилка",
+    "connection_error": "Перевірте з'єднання з інтернетом або спробуйте потім.\n {errorText}",
+    "tap_to_scan": "Натисніть, щоб відсканувати",
+    "menu_tab": "Меню",
+    "order_tab": "Замовити",
+    "qr_tab": "Сканувати",
+    "history_tab": "Історія",
+    "profile_tab": "Профіль",
+    "log_in": "Увійти",
+    "password": "Пароль",
+    "confirm_password": "Підтвердіть пароль",
+    "email":"Пошта",
+    "dont_have_account":"Не маєте акаунта?",
+    "have_account":"Маєте акаунт?",
+    "sign_up":"Зареєструватись",
+    "validation_email": "Будь ласка, введіть вашу пошту",
+    "validation_email_valid": "Будь ласка, введіть дійсну пошту",
+    "validation_password":"Будь ласка, введіть пароль",
+    "validation_password_valid":"Пароль повинен бути не менше 8 символів",
+    "validation_re_password":"Будь ласка, підтвердіть ваш пароль",
+    "validation_re_password_valid":"Паролі не збігаються"
+}

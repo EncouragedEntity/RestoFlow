@@ -1,0 +1,23 @@
+{
+    "error": "error",
+    "connection_error": "Check your internet connection or try again later.\n {errorText}",
+    "tap_to_scan": "Tap to scan",
+    "menu_tab": "Menu",
+    "order_tab": "Order",
+    "qr_tab": "Scan QR",
+    "history_tab": "History",
+    "profile_tab": "Profile",
+    "log_in": "Log in",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "email":"Email",
+    "dont_have_account":"Don't have an account?",
+    "have_account":"Already have an account?",
+    "sign_up":"Sign up",
+    "validation_email": "Please, enter your email",
+    "validation_email_valid": "Please, enter valid email",
+    "validation_password":"Please, enter your password",
+    "validation_password_valid":"Password must be at least 8 characters",
+    "validation_re_password":"Please, confirm your password",
+    "validation_re_password_valid":"Passwords do not match"
+}
