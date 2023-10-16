@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:resto_flow/generated/l10n.dart';
 
 class ScannerPage extends StatefulWidget {
   const ScannerPage({super.key});
@@ -65,9 +66,9 @@ class _ScannerPageState extends State<ScannerPage> {
                   ),
                 ),
                 if (shouldShowInstructions)
-                  const Text(
-                    "Tap to scan",
-                    style: TextStyle(
+                  Text(
+                    S.of(context).tap_to_scan,
+                    style: const TextStyle(
                       decoration: TextDecoration.none,
                       fontSize: 18,
                       color: Colors.white,

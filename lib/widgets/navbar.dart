@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
 import 'package:resto_flow/events/auth_event.dart';
+import 'package:resto_flow/generated/l10n.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
 
 import '../blocs/nav_bloc.dart';
@@ -18,6 +19,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       style: TabStyle.react,
       initialActiveIndex: initialIndex,
       onTap: (index) {
@@ -26,26 +28,41 @@ class NavBar extends StatelessWidget {
         }
         context.read<NavBloc>().add(NavEvent.values[index]);
       },
-      items: const [
+      items: [
         TabItem(
-          icon: Icon(Icons.restaurant_menu),
-          title: 'Menu',
+          icon: Icon(
+            Icons.restaurant_menu,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          title: S.of(context).menu_tab,
         ),
         TabItem(
-          icon: Icon(Icons.menu),
-          title: 'Order',
+          icon: Icon(
+            Icons.menu,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          title: S.of(context).order_tab,
         ),
         TabItem(
-          icon: Icon(Icons.qr_code_2),
-          title: 'Scan QR',
+          icon: Icon(
+            Icons.qr_code_2,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          title: S.of(context).qr_tab,
         ),
         TabItem(
-          icon: Icon(Icons.history),
-          title: 'History',
+          icon: Icon(
+            Icons.history,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          title: S.of(context).history_tab,
         ),
         TabItem(
-          icon: Icon(Icons.person),
-          title: 'Profile',
+          icon: Icon(
+            Icons.person,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          title: S.of(context).profile_tab,
         ),
       ],
     );
