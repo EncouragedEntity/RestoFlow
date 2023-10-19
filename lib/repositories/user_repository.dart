@@ -3,9 +3,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:logger/logger.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:resto_flow/data/constants.dart';
 import 'package:resto_flow/models/auth/auth_response_dto.dart';
 import 'package:resto_flow/models/auth/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepository {
   final String? hostname;
@@ -21,6 +23,10 @@ class UserRepository {
 
   /// Logs in a user using [email] and [password]
   Future<User> logIn(String email, String password) async {
+    if (!await Permission.storage.isGranted) {
+      await Permission.manageExternalStorage.request();
+    }
+
     final response = await http.post(
       Uri.parse(hostname! + authLoginUrl),
       body: jsonEncode({
@@ -36,17 +42,22 @@ class UserRepository {
       currentUser = responseDto.userDTO;
 
       const storage = FlutterSecureStorage();
-
-      storage.write(
+      await storage.write(
         key: "accessToken",
         value: responseDto.authTokenDTO.accessToken,
       );
+
+      Logger().i(
+        await storage.read(key: "accessToken"),
+      );
+
       return currentUser!;
     } else {
       throw Exception('Failed to sign in: ${response.reasonPhrase}');
     }
   }
 
+  /// Automatic login by saved "accessToken"
   Future<User?> automaticLogin() async {
     const storage = FlutterSecureStorage();
 
@@ -113,9 +124,9 @@ class UserRepository {
 
   /// Logs user out of the system
   Future<void> logOut() async {
-    const storage = FlutterSecureStorage();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     currentUser = null;
-    await storage.delete(key: "accessToken");
+    await prefs.remove("accessToken");
   }
 }

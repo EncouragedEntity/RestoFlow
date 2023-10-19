@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
 import 'package:resto_flow/blocs/nav_bloc.dart';
+import 'package:resto_flow/events/auth_event.dart';
 import 'package:resto_flow/pages/profile_page.dart';
 import 'package:resto_flow/pages/qr_scanner_page.dart';
+import 'package:resto_flow/repositories/user_repository.dart';
 import 'package:resto_flow/states/auth_state.dart';
 
 import '../widgets/navbar.dart';
@@ -19,6 +21,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 2;
+  @override
+  void initState() {
+    super.initState();
+    if (UserRepository.currentUser == null) {
+      context.read<AuthBloc>().add(AuthAutomaticLoginEvent());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

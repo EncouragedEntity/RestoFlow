@@ -29,28 +29,30 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget buildUserProfile(User user, BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Profile for ${user.username}",
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16),
-          Text("Email: ${user.email}"),
-          Text("First Name: ${user.firstName}"),
-          Text("Last Name: ${user.lastName}"),
-          Text("Authorities: ${user.authorities.join(", ")}"),
-          Text("Bonus Score: ${user.bonusScore}"),
-          Text("Deleted: ${user.deleted ? 'Yes' : 'No'}"),
-          ElevatedButton(
-            onPressed: () {
-              context.read<AuthBloc>().add(AuthSignOutEvent());
-            },
-            child: const Text('Log out'),
-          ),
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Profile for ${user.username}",
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            Text("Email: ${user.email}"),
+            Text("First Name: ${user.firstName}"),
+            Text("Last Name: ${user.lastName}"),
+            Text("Authorities: ${user.authorities.join(", ")}"),
+            Text("Bonus Score: ${user.bonusScore}"),
+            Text("Deleted: ${user.deleted ? 'Yes' : 'No'}"),
+            ElevatedButton(
+              onPressed: () {
+                context.read<AuthBloc>().add(AuthSignOutEvent());
+              },
+              child: const Text('Log out'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -12,7 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<AuthWantToLogInEvent>((event, emit) async {
-      final user = await userRepository.automaticLogin();
+      final user = UserRepository.currentUser;
       if (user == null) {
         emit(AuthLoggingIn());
         return;
@@ -29,6 +29,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthFailure(error.toString()));
       }
     });
+
+    on<AuthAutomaticLoginEvent>(
+      (event, emit) async {
+        try {
+          final user = await userRepository.automaticLogin();
+          if (user == null) {
+            emit(AuthUnauthenticated());
+            return;
+          }
+          emit(AuthAuthenticated(user));
+        } catch (error) {
+          emit(AuthFailure(error.toString()));
+        }
+      },
+    );
 
     on<AuthSignUpEvent>((event, emit) async {
       emit(AuthLoading());
