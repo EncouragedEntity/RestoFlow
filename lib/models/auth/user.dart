@@ -1,5 +1,10 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user.g.dart';
+
+@JsonSerializable()
 class User {
   final int? id;
   final String username;
@@ -29,41 +34,37 @@ class User {
     this.restaurantName,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJsonMap() => _$UserToJson(this);
+  String toJsonString() => jsonEncode(toJsonMap());
+
+  User copyWith({
+    int? id,
+    String? username,
+    String? email,
+    String? firstName,
+    String? lastName,
+    List<String>? authorities,
+    int? bonusScore,
+    bool? deleted,
+    String? password,
+    String? restaurantAddress,
+    int? restaurantId,
+    String? restaurantName,
+  }) {
     return User(
-      id: json['id'] as int?,
-      username: json['username'] as String,
-      email: json['email'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      authorities: List<String>.from(json['authorities']),
-      bonusScore: json['bonusScore'] as int? ?? 0,
-      deleted: json['deleted'] as bool? ?? false,
-      password: json['password'] as String,
-      restaurantAddress: json['restaurantAddress'] as String?,
-      restaurantId: json['restaurantId'] as int?,
-      restaurantName: json['restaurantName'] as String?,
+      id: id ?? this.id,
+      username: username ?? this.username,
+      email: email ?? this.email,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      authorities: authorities ?? this.authorities,
+      bonusScore: bonusScore ?? this.bonusScore,
+      deleted: deleted ?? this.deleted,
+      password: password ?? this.password,
+      restaurantAddress: restaurantAddress ?? this.restaurantAddress,
+      restaurantId: restaurantId ?? this.restaurantId,
+      restaurantName: restaurantName ?? this.restaurantName,
     );
-  }
-
-  String toJson() {
-    return jsonEncode(toJsonMap());
-  }
-
-  Map<String, dynamic> toJsonMap() {
-    return {
-      'id': id ?? "0",
-      'username': username,
-      'email': email,
-      'firstName': firstName,
-      'lastName': lastName,
-      'authorities': authorities,
-      'bonusScore': bonusScore,
-      'deleted': deleted,
-      'password': password,
-      'restaurantAddress': null,
-      'restaurantId': null,
-      'restaurantName': null,
-    };
   }
 }
