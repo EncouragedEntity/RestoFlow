@@ -7,7 +7,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:resto_flow/data/constants.dart';
 import 'package:resto_flow/models/auth/auth_response_dto.dart';
 import 'package:resto_flow/models/auth/user.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepository {
   final String? hostname;
@@ -124,9 +123,9 @@ class UserRepository {
 
   /// Logs user out of the system
   Future<void> logOut() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    const storage = FlutterSecureStorage();
 
     currentUser = null;
-    await prefs.remove("accessToken");
+    await storage.delete(key: "accessToken");
   }
 }
