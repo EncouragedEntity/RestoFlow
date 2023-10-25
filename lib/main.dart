@@ -9,7 +9,27 @@ import 'blocs/nav_bloc.dart';
 import 'config/ngrok.dart';
 import 'package:flutter/services.dart';
 
+// Dark
+// --text: #fef1f1;
+// --background: #1e0000;
+// --primary: #8e0101;
+// --secondary: #520019;
+// --accent: #ca9000;
+//
+// Light
+// --text: #0e0101;
+// --background: #ffe0e0;
+// --primary: #fe7171;
+// --secondary: #ffadc6;
+// --accent: #9fb7c1;
+
 void main() async {
+  const darkPrimaryColor = Color(0xFF8E0101);
+  const darkAccentColor = Color(0xFFCA9000);
+
+  const primaryColor = Color(0xFFFE7171);
+  const accentColor = Color(0xFF9FB7C1);
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -23,15 +43,44 @@ void main() async {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: const ColorScheme.light(
-            primary: Color.fromARGB(255, 156, 0, 31),
-            secondary: Color(0xFF191400),
-            background: Color(0xFF762e3e),
-            onPrimary: Color(0xFFffe1e7),
+        themeMode: ThemeMode.dark,
+        darkTheme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: const Color(0xFF1E0000),
+          primaryColor: darkPrimaryColor,
+          primaryColorLight: darkPrimaryColor,
+          primaryColorDark: darkPrimaryColor,
+          highlightColor: darkAccentColor,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: darkPrimaryColor,
+            foregroundColor: Colors.white,
           ),
-          hintColor: const Color(0xFFe2b603),
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(
+              color: Color(0xFFFEF1F1),
+            ),
+            bodyMedium: TextStyle(
+              color: Color(0xFFFEF1F1),
+            ),
+          ),
+        ),
+        theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: const Color(0xFFFFE0E0),
+          primaryColor: primaryColor,
+          primaryColorLight: primaryColor,
+          primaryColorDark: primaryColor,
+          highlightColor: accentColor,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: primaryColor,
+            foregroundColor: Colors.black,
+          ),
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(
+              color: Color(0xFF0E0101),
+            ),
+            bodyMedium: TextStyle(
+              color: Color(0xFF0E0101),
+            ),
+          ),
         ),
         debugShowCheckedModeBanner: false,
         home: FutureBuilder(

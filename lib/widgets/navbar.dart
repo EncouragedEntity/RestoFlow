@@ -19,7 +19,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).primaryColor,
       style: TabStyle.react,
       initialActiveIndex: initialIndex,
       onTap: (index) {
@@ -30,37 +30,32 @@ class NavBar extends StatelessWidget {
       },
       items: [
         TabItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.restaurant_menu,
-            color: Theme.of(context).colorScheme.onPrimary,
           ),
           title: S.of(context).menu_tab,
         ),
         TabItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
-            color: Theme.of(context).colorScheme.onPrimary,
           ),
           title: S.of(context).order_tab,
         ),
         TabItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.qr_code_2,
-            color: Theme.of(context).colorScheme.onPrimary,
           ),
           title: S.of(context).qr_tab,
         ),
         TabItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.history,
-            color: Theme.of(context).colorScheme.onPrimary,
           ),
           title: S.of(context).history_tab,
         ),
         TabItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.person,
-            color: Theme.of(context).colorScheme.onPrimary,
           ),
           title: S.of(context).profile_tab,
         ),

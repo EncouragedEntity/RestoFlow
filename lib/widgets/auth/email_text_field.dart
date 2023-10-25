@@ -14,35 +14,32 @@ class EmailTextField extends StatelessWidget {
     return TextFormField(
       controller: _emailController,
       textAlign: TextAlign.center,
-      style: TextStyle(
-        color: Theme.of(context).colorScheme.onPrimary,
+      style: const TextStyle(
         fontSize: 13,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w400,
       ),
       decoration: InputDecoration(
         errorStyle: TextStyle(
-          color: Theme.of(context).hintColor,
+          color: Theme.of(context).highlightColor,
         ),
         labelText: S.of(context).email,
-        labelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onPrimary,
+        labelStyle: const TextStyle(
           fontSize: 15,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w600,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(
             width: 1,
-            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(
             width: 1,
-            color: Theme.of(context).hintColor,
+            color: Theme.of(context).highlightColor,
           ),
         ),
       ),

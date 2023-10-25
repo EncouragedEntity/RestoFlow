@@ -38,8 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text(
                     S.of(context).log_in,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                    style: const TextStyle(
                       fontSize: 27,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500,
@@ -74,13 +73,11 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
+                          backgroundColor: Theme.of(context).primaryColor,
                         ),
                         child: Text(
                           S.of(context).log_in,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
+                          style: const TextStyle(
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
@@ -96,8 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Text(
                         S.of(context).dont_have_account,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary,
+                        style: const TextStyle(
                           fontSize: 13,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w500,
@@ -113,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           S.of(context).sign_up,
                           style: TextStyle(
-                            color: Theme.of(context).hintColor,
+                            color: Theme.of(context).highlightColor,
                             fontSize: 13,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
