@@ -55,6 +55,8 @@ dependencies:
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
   flutter_native_splash: ^2.3.4
+  flutter_sticky_header: ^0.6.5
+  carousel_slider: ^4.2.1
 
 
 dev_dependencies:
