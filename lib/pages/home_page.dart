@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
 import 'package:resto_flow/blocs/nav_bloc.dart';
-import 'package:resto_flow/events/auth_event.dart';
+import 'package:resto_flow/pages/menu_page.dart';
 import 'package:resto_flow/pages/profile_page.dart';
 import 'package:resto_flow/pages/qr_scanner_page.dart';
-import 'package:resto_flow/repositories/user_repository.dart';
 import 'package:resto_flow/states/auth_state.dart';
 
 import '../widgets/navbar.dart';
@@ -24,9 +23,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    if (UserRepository.currentUser == null) {
-      context.read<AuthBloc>().add(AuthAutomaticLoginEvent());
-    }
   }
 
   @override
@@ -38,8 +34,9 @@ class _HomePageState extends State<HomePage> {
             builder: (context, navState) {
               Widget currentPage = const ScannerPage();
               if (authState is AuthLoading) {
-                currentPage = const Center(
-                  child: CircularProgressIndicator(),
+                currentPage = Center(
+                  child: CircularProgressIndicator(
+                      color: Theme.of(context).primaryColor),
                 );
               } else if (authState is AuthLoggingIn) {
                 currentPage = const LoginPage();
@@ -47,8 +44,7 @@ class _HomePageState extends State<HomePage> {
                 currentPage = const SignUpPage();
               } else {
                 if (navState == 0) {
-                  // TODO: Handle navigation to Menu Page
-                  currentPage = const Placeholder();
+                  currentPage = const MenuPage();
                   selectedIndex = 0;
                 } else if (navState == 1) {
                   // TODO: Handle navigation to Order Page
