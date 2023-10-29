@@ -32,9 +32,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "error": MessageLookupByLibrary.simpleMessage("error"),
+        "firstname": MessageLookupByLibrary.simpleMessage("First name"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "history_tab": MessageLookupByLibrary.simpleMessage("History"),
+        "lastname": MessageLookupByLibrary.simpleMessage("Last name"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log in"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Menu"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Order"),
@@ -42,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_tab": MessageLookupByLibrary.simpleMessage("Profile"),
         "qr_tab": MessageLookupByLibrary.simpleMessage("Scan QR"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "stranger": MessageLookupByLibrary.simpleMessage("Stranger"),
         "tap_to_scan": MessageLookupByLibrary.simpleMessage("Tap to scan"),
         "validation_email":
             MessageLookupByLibrary.simpleMessage("Please, enter your email"),

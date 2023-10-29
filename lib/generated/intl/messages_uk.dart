@@ -32,8 +32,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Не маєте акаунта?"),
         "email": MessageLookupByLibrary.simpleMessage("Пошта"),
         "error": MessageLookupByLibrary.simpleMessage("Помилка"),
+        "firstname": MessageLookupByLibrary.simpleMessage("Ім\'я"),
         "have_account": MessageLookupByLibrary.simpleMessage("Маєте акаунт?"),
+        "hello": MessageLookupByLibrary.simpleMessage("Вітаємо,"),
         "history_tab": MessageLookupByLibrary.simpleMessage("Історія"),
+        "lastname": MessageLookupByLibrary.simpleMessage("Прізвище"),
         "log_in": MessageLookupByLibrary.simpleMessage("Увійти"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Меню"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Замовити"),
@@ -41,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_tab": MessageLookupByLibrary.simpleMessage("Профіль"),
         "qr_tab": MessageLookupByLibrary.simpleMessage("Сканувати"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Зареєструватись"),
+        "stranger": MessageLookupByLibrary.simpleMessage("Незнайомцю"),
         "tap_to_scan":
             MessageLookupByLibrary.simpleMessage("Натисніть, щоб відсканувати"),
         "validation_email": MessageLookupByLibrary.simpleMessage(

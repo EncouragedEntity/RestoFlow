@@ -170,6 +170,26 @@ class S {
     );
   }
 
+  /// `First name`
+  String get firstname {
+    return Intl.message(
+      'First name',
+      name: 'firstname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get lastname {
+    return Intl.message(
+      'Last name',
+      name: 'lastname',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Don't have an account?`
   String get dont_have_account {
     return Intl.message(
@@ -255,6 +275,26 @@ class S {
     return Intl.message(
       'Passwords do not match',
       name: 'validation_re_password_valid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello,`
+  String get hello {
+    return Intl.message(
+      'Hello,',
+      name: 'hello',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stranger`
+  String get stranger {
+    return Intl.message(
+      'Stranger',
+      name: 'stranger',
       desc: '',
       args: [],
     );

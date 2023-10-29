@@ -11,6 +11,8 @@
     "password": "Пароль",
     "confirm_password": "Підтвердіть пароль",
     "email":"Пошта",
+    "firstname":"Ім'я",
+    "lastname":"Прізвище",
     "dont_have_account":"Не маєте акаунта?",
     "have_account":"Маєте акаунт?",
     "sign_up":"Зареєструватись",
@@ -19,5 +21,7 @@
     "validation_password":"Будь ласка, введіть пароль",
     "validation_password_valid":"Пароль повинен бути не менше 8 символів",
     "validation_re_password":"Будь ласка, підтвердіть ваш пароль",
-    "validation_re_password_valid":"Паролі не збігаються"
+    "validation_re_password_valid":"Паролі не збігаються",
+    "hello": "Вітаємо,",
+    "stranger": "Незнайомцю"
 }

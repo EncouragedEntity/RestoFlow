@@ -11,6 +11,8 @@
     "password": "Password",
     "confirm_password": "Confirm password",
     "email":"Email",
+    "firstname":"First name",
+    "lastname":"Last name",
     "dont_have_account":"Don't have an account?",
     "have_account":"Already have an account?",
     "sign_up":"Sign up",
@@ -19,5 +21,7 @@
     "validation_password":"Please, enter your password",
     "validation_password_valid":"Password must be at least 8 characters",
     "validation_re_password":"Please, confirm your password",
-    "validation_re_password_valid":"Passwords do not match"
+    "validation_re_password_valid":"Passwords do not match",
+    "hello": "Hello,",
+    "stranger": "Stranger"
 }
