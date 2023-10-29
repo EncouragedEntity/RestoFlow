@@ -39,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: [
                   Text(
                     S.of(context).sign_up,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 27,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w500,
@@ -99,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         child: Text(
                           S.of(context).sign_up,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
