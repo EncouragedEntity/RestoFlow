@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:resto_flow/models/auth/user.dart';
 
 abstract class AuthEvent extends Equatable {
   @override
@@ -17,6 +18,15 @@ class AuthLogInEvent extends AuthEvent {
 
   @override
   List<Object> get props => [email, password];
+}
+
+class AuthUpdateUserEvent extends AuthEvent {
+  final String email;
+  final User user;
+
+  AuthUpdateUserEvent({required this.user, required this.email});
+  @override
+  List<Object> get props => [user, email];
 }
 
 class AuthAutomaticLoginEvent extends AuthEvent {}

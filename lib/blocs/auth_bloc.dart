@@ -7,6 +7,20 @@ import '../repositories/user_repository.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository;
   AuthBloc({required this.userRepository}) : super(AuthUnauthenticated()) {
+    on<AuthUpdateUserEvent>(
+      (event, emit) async {
+        emit(AuthLoading());
+        final newUser = event.user;
+        final email = event.email;
+
+        try {
+          emit(AuthAuthenticated(await userRepository.update(email, newUser)));
+        } on Exception catch (e) {
+          emit(AuthFailure("Failed to update user \n${e.toString()}"));
+        }
+      },
+    );
+
     on<AuthWantToSignUpEvent>((event, emit) {
       emit(AuthSigningUp());
     });
