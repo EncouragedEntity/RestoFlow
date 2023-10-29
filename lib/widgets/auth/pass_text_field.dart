@@ -17,6 +17,9 @@ class PasswordTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: true,
+      enableSuggestions: false,
+      autocorrect: false,
       controller: _passController,
       textAlign: TextAlign.center,
       style: const TextStyle(
