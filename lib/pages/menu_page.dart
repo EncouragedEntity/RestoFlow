@@ -1,10 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:resto_flow/data/data_mocker.dart';
 import 'package:resto_flow/models/products/category.dart';
 import 'package:resto_flow/models/products/product.dart';
-import 'package:resto_flow/widgets/products/product_card.dart';
+
+import '../generated/l10n.dart';
+import '../repositories/category_repository.dart';
+import '../repositories/user_repository.dart';
+import 'products/products_carousel_slider_page.dart';
+import 'products/products_grid_view_page.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -14,14 +17,16 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+  bool productsDisplayModeGrid = false;
+  late Icon displayModeIcon;
+
   List<ProductCategory> categories = List.empty();
   List<Product> products = List.empty();
-  // ignore: unused_field
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
 
   Future<void> getCategories() async {
-    categories = await DataMocker().getCategories();
+    categories = await CategoryRepository(
+      hostname: UserRepository.instance?.hostname ?? "error",
+    ).getAll();
   }
 
   Future<void> getProducts() async {
@@ -30,12 +35,14 @@ class _MenuPageState extends State<MenuPage> {
 
   Future<void> getMenu() async {
     await getCategories();
-    await getProducts();
   }
 
-  // ignore: unused_element
-  Future<void> _refresh() async {
-    await getMenu();
+  @override
+  void initState() {
+    super.initState();
+    displayModeIcon = !productsDisplayModeGrid
+        ? const Icon(Icons.grid_view_rounded)
+        : const Icon(Icons.view_list_rounded);
   }
 
   @override
@@ -44,58 +51,57 @@ class _MenuPageState extends State<MenuPage> {
       future: getMenu(),
       builder: (context, snapshot) {
         if (categories.isNotEmpty) {
-          return Scaffold(
-            body: SafeArea(
-              child: CustomScrollView(
-                slivers: <Widget>[
-                  ...categories.map((category) {
-                    final categoryProducts = products
-                        .where((element) => element.categoryId == category.id)
-                        .toList();
-
-                    return SliverStickyHeader(
-                      header: Container(
-                        height: 50.0,
-                        color: Theme.of(context).primaryColor,
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          category.name,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      sliver: SliverToBoxAdapter(
-                        child: SizedBox(
-                          height: 350,
-
-                          child: CarouselSlider(
-                            options: CarouselOptions(
-                              animateToClosest: true,
-                              reverse: false,
-                              enableInfiniteScroll: false,
-                              initialPage: 0,
-                              height: 350,
-                              padEnds: false,
-                            ),
-                            items: categoryProducts.map(
-                              (e) {
-                                final product = e;
-                                return ProductCard(product: product);
-                              },
-                            ).toList(),
-                          ),
-                          // child: ListView.builder(
-                          //   scrollDirection: Axis.horizontal,
-                          //   itemCount: categoryProducts.length,
-                          //   itemBuilder: (context, index) {
-                          //
-                          //   },
-                          // ),
-                        ),
-                      ),
-                    );
-                  }),
+          return DefaultTabController(
+            length: categories.length,
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text(S.current.menu_tab),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        productsDisplayModeGrid =
+                            productsDisplayModeGrid ? false : true;
+                        displayModeIcon = !productsDisplayModeGrid
+                            ? const Icon(Icons.grid_view_rounded)
+                            : const Icon(Icons.view_list_rounded);
+                      });
+                    },
+                    icon: displayModeIcon,
+                  ),
                 ],
+                bottom: TabBar(
+                  indicatorColor: Theme.of(context).highlightColor,
+                  isScrollable: true,
+                  tabs: categories.map((category) {
+                    return Tab(
+                      text: category.name,
+                    );
+                  }).toList(),
+                ),
+              ),
+              body: TabBarView(
+                children: categories.map((category) {
+                  final categoryProducts = products
+                      .where((element) => element.categoryId == category.id)
+                      .toList();
+                  if (categoryProducts.isEmpty) {
+                    return const Center(
+                      child: Text("Nothing here. For now ;)"),
+                    );
+                  }
+                  if (productsDisplayModeGrid == false) {
+                    return ProductsCarouselSliderPage(
+                      categoryProducts: categoryProducts,
+                      productsDisplayModeGrid: productsDisplayModeGrid,
+                    );
+                  } else {
+                    return ProductsGridViewPage(
+                      categoryProducts: categoryProducts,
+                      productsDisplayModeGrid: productsDisplayModeGrid,
+                    );
+                  }
+                }).toList(),
               ),
             ),
           );

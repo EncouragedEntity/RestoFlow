@@ -6,13 +6,13 @@ part 'category.g.dart';
 class ProductCategory {
   final int id;
   final String name;
-  final int parentCategoryId;
+  final int? parentCategoryId;
   final int restaurantId;
 
   ProductCategory({
     required this.id,
     required this.name,
-    required this.parentCategoryId,
+    this.parentCategoryId,
     required this.restaurantId,
   });
 

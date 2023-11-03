@@ -10,7 +10,7 @@ ProductCategory _$ProductCategoryFromJson(Map<String, dynamic> json) =>
     ProductCategory(
       id: json['id'] as int,
       name: json['name'] as String,
-      parentCategoryId: json['parentCategoryId'] as int,
+      parentCategoryId: json['parentCategoryId'] as int?,
       restaurantId: json['restaurantId'] as int,
     );
 
