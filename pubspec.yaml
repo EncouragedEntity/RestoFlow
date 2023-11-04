@@ -57,6 +57,7 @@ dependencies:
   flutter_native_splash: ^2.3.4
   flutter_sticky_header: ^0.6.5
   carousel_slider: ^4.2.1
+  cached_network_image: ^3.3.0
 
 
 dev_dependencies:
