@@ -25,9 +25,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add_to_order":
+            MessageLookupByLibrary.simpleMessage("Додати до замовлення"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Відміна"),
+        "confirm_log_out":
+            MessageLookupByLibrary.simpleMessage("Підтвердження виходу"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Підтвердіть пароль"),
         "connection_error": m0,
+        "details": MessageLookupByLibrary.simpleMessage("Деталі про страву"),
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Не маєте акаунта?"),
         "email": MessageLookupByLibrary.simpleMessage("Пошта"),
@@ -38,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_tab": MessageLookupByLibrary.simpleMessage("Історія"),
         "lastname": MessageLookupByLibrary.simpleMessage("Прізвище"),
         "log_in": MessageLookupByLibrary.simpleMessage("Увійти"),
+        "log_out": MessageLookupByLibrary.simpleMessage("Вийти"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Меню"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Замовити"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
@@ -58,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "validation_re_password": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, підтвердіть ваш пароль"),
         "validation_re_password_valid":
-            MessageLookupByLibrary.simpleMessage("Паролі не збігаються")
+            MessageLookupByLibrary.simpleMessage("Паролі не збігаються"),
+        "want_to_log_out":
+            MessageLookupByLibrary.simpleMessage("Ви дійсно хочете вийти?")
       };
 }

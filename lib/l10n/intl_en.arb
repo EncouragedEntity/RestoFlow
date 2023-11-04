@@ -10,6 +10,10 @@
     "log_in": "Log in",
     "password": "Password",
     "confirm_password": "Confirm password",
+    "confirm_log_out":"Confirm logout",
+    "want_to_log_out":"Do you really want to log out?",
+    "cancel":"Cancel",
+    "log_out":"Log out",
     "email":"Email",
     "firstname":"First name",
     "lastname":"Last name",
@@ -23,5 +27,7 @@
     "validation_re_password":"Please, confirm your password",
     "validation_re_password_valid":"Passwords do not match",
     "hello": "Hello,",
-    "stranger": "Stranger"
+    "stranger": "Stranger",
+    "add_to_order":"Add to order",
+    "details":"Dish details"
 }

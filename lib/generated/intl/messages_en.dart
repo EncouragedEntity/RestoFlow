@@ -25,9 +25,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add_to_order": MessageLookupByLibrary.simpleMessage("Add to order"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm_log_out":
+            MessageLookupByLibrary.simpleMessage("Confirm logout"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "connection_error": m0,
+        "details": MessageLookupByLibrary.simpleMessage("Dish details"),
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -39,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "history_tab": MessageLookupByLibrary.simpleMessage("History"),
         "lastname": MessageLookupByLibrary.simpleMessage("Last name"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log in"),
+        "log_out": MessageLookupByLibrary.simpleMessage("Log out"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Menu"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Order"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -58,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "validation_re_password": MessageLookupByLibrary.simpleMessage(
             "Please, confirm your password"),
         "validation_re_password_valid":
-            MessageLookupByLibrary.simpleMessage("Passwords do not match")
+            MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "want_to_log_out": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to log out?")
       };
 }

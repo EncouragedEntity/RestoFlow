@@ -10,6 +10,10 @@
     "log_in": "Увійти",
     "password": "Пароль",
     "confirm_password": "Підтвердіть пароль",
+    "confirm_log_out":"Підтвердження виходу",
+    "want_to_log_out":"Ви дійсно хочете вийти?",
+    "cancel":"Відміна",
+    "log_out":"Вийти",
     "email":"Пошта",
     "firstname":"Ім'я",
     "lastname":"Прізвище",
@@ -23,5 +27,7 @@
     "validation_re_password":"Будь ласка, підтвердіть ваш пароль",
     "validation_re_password_valid":"Паролі не збігаються",
     "hello": "Вітаємо,",
-    "stranger": "Незнайомцю"
+    "stranger": "Незнайомцю",
+    "add_to_order":"Додати до замовлення",
+    "details":"Деталі про страву"
 }

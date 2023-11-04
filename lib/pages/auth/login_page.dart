@@ -5,7 +5,7 @@ import 'package:resto_flow/generated/l10n.dart';
 import 'package:resto_flow/widgets/auth/email_text_field.dart';
 import 'package:resto_flow/widgets/auth/pass_text_field.dart';
 
-import '../../events/auth_event.dart';
+import '../../blocs/events/auth_event.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

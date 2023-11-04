@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:logger/logger.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
+import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/generated/l10n.dart';
 import 'package:resto_flow/pages/home_page.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
@@ -76,6 +77,9 @@ void main() async {
             ),
             BlocProvider<NavBloc>(
               create: (context) => NavBloc(),
+            ),
+            BlocProvider<ProductBloc>(
+              create: (context) => ProductBloc(),
             ),
           ],
           child: const HomePage(),

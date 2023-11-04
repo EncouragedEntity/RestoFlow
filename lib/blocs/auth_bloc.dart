@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resto_flow/events/auth_event.dart';
-import 'package:resto_flow/states/auth_state.dart';
+import 'package:resto_flow/blocs/events/auth_event.dart';
+import 'package:resto_flow/blocs/states/auth_state.dart';
 
 import '../repositories/user_repository.dart';
 

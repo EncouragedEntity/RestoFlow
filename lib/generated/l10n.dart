@@ -160,6 +160,46 @@ class S {
     );
   }
 
+  /// `Confirm logout`
+  String get confirm_log_out {
+    return Intl.message(
+      'Confirm logout',
+      name: 'confirm_log_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to log out?`
+  String get want_to_log_out {
+    return Intl.message(
+      'Do you really want to log out?',
+      name: 'want_to_log_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get log_out {
+    return Intl.message(
+      'Log out',
+      name: 'log_out',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email`
   String get email {
     return Intl.message(
@@ -295,6 +335,26 @@ class S {
     return Intl.message(
       'Stranger',
       name: 'stranger',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to order`
+  String get add_to_order {
+    return Intl.message(
+      'Add to order',
+      name: 'add_to_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dish details`
+  String get details {
+    return Intl.message(
+      'Dish details',
+      name: 'details',
       desc: '',
       args: [],
     );

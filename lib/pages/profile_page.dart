@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
-import 'package:resto_flow/events/auth_event.dart';
-import 'package:resto_flow/models/auth/user.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
 
+import '../blocs/events/auth_event.dart';
 import '../generated/l10n.dart';
-import '../states/auth_state.dart';
+import '../blocs/states/auth_state.dart';
+import '../widgets/my_themed_alert.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -43,9 +43,121 @@ class _ProfilePageState extends State<ProfilePage> {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is AuthAuthenticated) {
-          return buildUserProfile(
-            state.user,
-            context,
+          final user = state.user;
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                  "${S.current.hello} ${user.firstName.isNotEmpty ? user.firstName : S.current.stranger}"),
+              actions: [
+                Row(
+                  children: [
+                    Text(
+                      user.bonusScore.toString(),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const Icon(Icons.monetization_on, color: Colors.yellow),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return MyThemedAlert(
+                          title: Text(S.current.confirm_log_out),
+                          content: Text(S.current.want_to_log_out),
+                          actions: <Widget>[
+                            TextButton(
+                              style: ButtonStyle(
+                                foregroundColor: MaterialStatePropertyAll(
+                                  Theme.of(context).highlightColor,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(S.current.cancel),
+                            ),
+                            TextButton(
+                              style: ButtonStyle(
+                                foregroundColor: MaterialStatePropertyAll(
+                                  Theme.of(context).highlightColor,
+                                ),
+                              ),
+                              onPressed: () {
+                                context.read<AuthBloc>().add(
+                                      AuthSignOutEvent(),
+                                    );
+                                Navigator.pop(context);
+                              },
+                              child: Text(S.current.log_out),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  icon: const Icon(Icons.logout),
+                )
+              ],
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 300,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _emailController,
+                              decoration:
+                                  InputDecoration(labelText: S.current.email),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              controller: _firstNameController,
+                              decoration: InputDecoration(
+                                  labelText: S.current.firstname),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              controller: _lastNameController,
+                              decoration: InputDecoration(
+                                  labelText: S.current.lastname),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        final editedFirstName = _firstNameController.text;
+                        final editedLastName = _lastNameController.text;
+                        final editedEmail = _emailController.text;
+
+                        context.read<AuthBloc>().add(
+                              AuthUpdateUserEvent(
+                                user: user.copyWith(
+                                  firstName: editedFirstName,
+                                  lastName: editedLastName,
+                                  email: editedEmail,
+                                ),
+                                email: user.email,
+                              ),
+                            );
+                      },
+                      child: const Text('Save Changes'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           );
         } else {
           context.read<AuthBloc>().add(AuthWantToLogInEvent());
@@ -55,88 +167,6 @@ class _ProfilePageState extends State<ProfilePage> {
               CircularProgressIndicator(color: Theme.of(context).primaryColor),
         );
       },
-    );
-  }
-
-  Widget buildUserProfile(User user, BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            "${S.current.hello} ${user.firstName.isNotEmpty ? user.firstName : S.current.stranger}"),
-        actions: [
-          Row(
-            children: [
-              Text(
-                user.bonusScore.toString(),
-                style: const TextStyle(fontSize: 16),
-              ),
-              const Icon(Icons.monetization_on, color: Colors.yellow),
-            ],
-          ),
-          IconButton(
-            onPressed: () {
-              context.read<AuthBloc>().add(AuthSignOutEvent());
-            },
-            icon: const Icon(Icons.logout),
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 300,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _emailController,
-                        decoration: InputDecoration(labelText: S.current.email),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: _firstNameController,
-                        decoration:
-                            InputDecoration(labelText: S.current.firstname),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: _lastNameController,
-                        decoration:
-                            InputDecoration(labelText: S.current.lastname),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  final editedFirstName = _firstNameController.text;
-                  final editedLastName = _lastNameController.text;
-                  final editedEmail = _emailController.text;
-
-                  context.read<AuthBloc>().add(
-                        AuthUpdateUserEvent(
-                          user: user.copyWith(
-                            firstName: editedFirstName,
-                            lastName: editedLastName,
-                            email: editedEmail,
-                          ),
-                          email: editedEmail,
-                        ),
-                      );
-                },
-                child: const Text('Save Changes'),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

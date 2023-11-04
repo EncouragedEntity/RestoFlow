@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
-import 'package:resto_flow/events/auth_event.dart';
 import 'package:resto_flow/generated/l10n.dart';
 import 'package:resto_flow/widgets/auth/email_text_field.dart';
 import 'package:resto_flow/widgets/auth/pass_text_field.dart';
+
+import '../../blocs/events/auth_event.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

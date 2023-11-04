@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
+import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/nav_bloc.dart';
-import 'package:resto_flow/pages/menu_page.dart';
+import 'package:resto_flow/blocs/product_bloc.dart';
+import 'package:resto_flow/blocs/states/product_state.dart';
+import 'package:resto_flow/pages/products/product_home_page.dart';
 import 'package:resto_flow/pages/profile_page.dart';
 import 'package:resto_flow/pages/qr_scanner_page.dart';
-import 'package:resto_flow/states/auth_state.dart';
+import 'package:resto_flow/blocs/states/auth_state.dart';
 
 import '../widgets/navbar.dart';
 import 'auth/login_page.dart';
@@ -29,9 +32,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, authState) {
+        builder: (authCtx, authState) {
           return BlocBuilder<NavBloc, int>(
-            builder: (context, navState) {
+            builder: (navCtx, navState) {
               Widget currentPage = const ScannerPage();
               if (authState is AuthLoading) {
                 currentPage = Center(
@@ -44,7 +47,12 @@ class _HomePageState extends State<HomePage> {
                 currentPage = const SignUpPage();
               } else {
                 if (navState == 0) {
-                  currentPage = const MenuPage();
+                  final productState =
+                      BlocProvider.of<ProductBloc>(context).state;
+                  if (productState is ProductLoading) {
+                    context.read<ProductBloc>().add(ProductShowAllEvent());
+                  }
+                  currentPage = const ProductHomePage();
                   selectedIndex = 0;
                 } else if (navState == 1) {
                   // TODO: Handle navigation to Order Page

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../events/nav_event.dart';
+import 'package:resto_flow/blocs/events/nav_event.dart';
 
 class NavBloc extends Bloc<NavEvent, int> {
   NavBloc() : super(2) {
