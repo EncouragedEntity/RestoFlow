@@ -14,7 +14,7 @@ class ProductRepository {
   Future<List<Product>> getAll() async {
     final response = await http.get(
       Uri.parse("$hostname$dineProduct/all"),
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     );
 
     if (response.statusCode == 200) {
