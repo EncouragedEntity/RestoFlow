@@ -31,7 +31,9 @@ class UserRepository {
     );
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
+      final Map<String, dynamic> data = jsonDecode(
+        utf8.decode(response.bodyBytes),
+      );
       final AuthResponseDto responseDto = AuthResponseDto.fromJson(data);
       currentUser = responseDto.userDTO;
 
@@ -99,7 +101,7 @@ class UserRepository {
     );
 
     if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
       return User.fromJson(json);
     }
     return null;
@@ -124,8 +126,9 @@ class UserRepository {
       headers: {'Content-Type': 'application/json'},
     );
 
-    if (response.statusCode == 201) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data =
+          jsonDecode(utf8.decode(response.bodyBytes));
       currentUser = User.fromJson(data);
       return currentUser!;
     } else {

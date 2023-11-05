@@ -17,6 +17,7 @@
     "email":"Пошта",
     "firstname":"Ім'я",
     "lastname":"Прізвище",
+    "new_password":"Новий пароль",
     "dont_have_account":"Не маєте акаунта?",
     "have_account":"Маєте акаунт?",
     "sign_up":"Зареєструватись",

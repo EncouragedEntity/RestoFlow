@@ -17,6 +17,7 @@
     "email":"Email",
     "firstname":"First name",
     "lastname":"Last name",
+    "new_password":"New password",
     "dont_have_account":"Don't have an account?",
     "have_account":"Already have an account?",
     "sign_up":"Sign up",

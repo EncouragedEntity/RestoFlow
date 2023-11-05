@@ -14,7 +14,7 @@ class User {
   final List<String> authorities;
   final int bonusScore;
   final bool deleted;
-  final String password;
+  final String? password;
   final String? restaurantAddress;
   final int? restaurantId;
   final String? restaurantName;
@@ -61,7 +61,7 @@ class User {
       authorities: authorities ?? this.authorities,
       bonusScore: bonusScore ?? this.bonusScore,
       deleted: deleted ?? this.deleted,
-      password: password ?? this.password,
+      password: password,
       restaurantAddress: restaurantAddress ?? this.restaurantAddress,
       restaurantId: restaurantId ?? this.restaurantId,
       restaurantName: restaurantName ?? this.restaurantName,

@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "log_in": MessageLookupByLibrary.simpleMessage("Log in"),
         "log_out": MessageLookupByLibrary.simpleMessage("Log out"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Menu"),
+        "new_password": MessageLookupByLibrary.simpleMessage("New password"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Order"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Profile"),

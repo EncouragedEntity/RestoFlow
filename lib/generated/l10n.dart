@@ -230,6 +230,16 @@ class S {
     );
   }
 
+  /// `New password`
+  String get new_password {
+    return Intl.message(
+      'New password',
+      name: 'new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Don't have an account?`
   String get dont_have_account {
     return Intl.message(

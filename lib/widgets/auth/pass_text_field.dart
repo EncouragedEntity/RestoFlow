@@ -7,12 +7,14 @@ class PasswordTextField extends StatelessWidget {
     required TextEditingController passController,
     TextEditingController? rePassController,
     required this.titleText,
+    this.allowEmpty = false,
   })  : _passController = passController,
         _rePassController = rePassController;
 
   final TextEditingController _passController;
   final TextEditingController? _rePassController;
   final String titleText;
+  final bool allowEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,6 @@ class PasswordTextField extends StatelessWidget {
       enableSuggestions: false,
       autocorrect: false,
       controller: _passController,
-      textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: 13,
         fontFamily: 'Poppins',
@@ -31,11 +32,12 @@ class PasswordTextField extends StatelessWidget {
         errorStyle: TextStyle(
           color: Theme.of(context).highlightColor,
         ),
-        labelText: titleText,
-        labelStyle: const TextStyle(
+        hintText: titleText,
+        hintStyle: TextStyle(
           fontSize: 15,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w600,
+          color: Theme.of(context).highlightColor,
         ),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -62,11 +64,13 @@ class PasswordTextField extends StatelessWidget {
           }
         }
 
-        if (value == null || value.isEmpty) {
-          return S.of(context).validation_password;
+        if (!allowEmpty) {
+          if (value == null || value.isEmpty) {
+            return S.of(context).validation_password;
+          }
         }
 
-        if (value.length < 8) {
+        if (value == null || value.isNotEmpty && value.length < 8) {
           return S.of(context).validation_password_valid;
         }
 

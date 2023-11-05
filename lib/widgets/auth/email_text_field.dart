@@ -24,10 +24,11 @@ class EmailTextField extends StatelessWidget {
           color: Theme.of(context).highlightColor,
         ),
         labelText: S.of(context).email,
-        labelStyle: const TextStyle(
+        labelStyle: TextStyle(
           fontSize: 15,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w600,
+          color: Theme.of(context).highlightColor,
         ),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),

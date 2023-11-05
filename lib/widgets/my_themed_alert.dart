@@ -15,6 +15,9 @@ class MyThemedAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor.withRed(100),
       title: title,
       content: Wrap(

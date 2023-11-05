@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "log_in": MessageLookupByLibrary.simpleMessage("Увійти"),
         "log_out": MessageLookupByLibrary.simpleMessage("Вийти"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Меню"),
+        "new_password": MessageLookupByLibrary.simpleMessage("Новий пароль"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Замовити"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Профіль"),
