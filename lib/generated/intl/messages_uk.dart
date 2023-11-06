@@ -47,10 +47,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "log_out": MessageLookupByLibrary.simpleMessage("Вийти"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Меню"),
         "new_password": MessageLookupByLibrary.simpleMessage("Новий пароль"),
+        "no_dishes":
+            MessageLookupByLibrary.simpleMessage("Тут порожньо. Поки що (:"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Замовити"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Профіль"),
         "qr_tab": MessageLookupByLibrary.simpleMessage("Сканувати"),
+        "save_changes": MessageLookupByLibrary.simpleMessage("Зберегти зміни"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Зареєструватись"),
         "stranger": MessageLookupByLibrary.simpleMessage("Незнайомцю"),
         "tap_to_scan":

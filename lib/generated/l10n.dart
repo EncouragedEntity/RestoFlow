@@ -240,6 +240,16 @@ class S {
     );
   }
 
+  /// `Save changes`
+  String get save_changes {
+    return Intl.message(
+      'Save changes',
+      name: 'save_changes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Don't have an account?`
   String get dont_have_account {
     return Intl.message(
@@ -365,6 +375,16 @@ class S {
     return Intl.message(
       'Dish details',
       name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty here. For now (:`
+  String get no_dishes {
+    return Intl.message(
+      'Empty here. For now (:',
+      name: 'no_dishes',
       desc: '',
       args: [],
     );

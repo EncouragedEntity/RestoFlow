@@ -47,10 +47,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "log_out": MessageLookupByLibrary.simpleMessage("Log out"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Menu"),
         "new_password": MessageLookupByLibrary.simpleMessage("New password"),
+        "no_dishes":
+            MessageLookupByLibrary.simpleMessage("Empty here. For now (:"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Order"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Profile"),
         "qr_tab": MessageLookupByLibrary.simpleMessage("Scan QR"),
+        "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "stranger": MessageLookupByLibrary.simpleMessage("Stranger"),
         "tap_to_scan": MessageLookupByLibrary.simpleMessage("Tap to scan"),
