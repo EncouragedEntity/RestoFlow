@@ -28,7 +28,6 @@ class ProductsGridViewPage extends StatelessWidget {
         final finalProduct = product.copyWith(name: product.name);
         return ProductCard(
           product: finalProduct,
-          displayMode: productsDisplayModeGrid,
         );
       },
     );

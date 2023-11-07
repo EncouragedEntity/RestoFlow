@@ -34,7 +34,7 @@ class _MenuPageState extends State<MenuPage>
   late Icon displayModeIcon;
 
   late final TabController _tabController;
-  int selectedTab = 0; // Initialize with the default tab index.
+  int selectedTab = 0;
 
   late final List<ProductCategory> categories;
   late final List<Product> products;
@@ -54,11 +54,10 @@ class _MenuPageState extends State<MenuPage>
     _tabController = TabController(
       length: categories.length,
       vsync: this,
-      initialIndex: selectedTab, // Set the initial index based on stored value.
+      initialIndex: selectedTab,
     );
 
     _tabController.addListener(() {
-      // When the tab changes, update the selectedTab value.
       selectedTab = _tabController.index;
     });
   }
@@ -78,79 +77,78 @@ class _MenuPageState extends State<MenuPage>
 
   @override
   Widget build(BuildContext context) {
-    // Wrap the MenuPage widget with PageStorage
-    return PageStorage(
-      bucket: PageStorageBucket(), // Provide a storage bucket
-      child: DefaultTabController(
-        length: categories.length,
-        child: RefreshIndicator(
-          backgroundColor:
-              Theme.of(context).scaffoldBackgroundColor.withRed(100),
-          color: Theme.of(context).highlightColor,
-          onRefresh: _handleRefresh,
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text(S.current.menu_tab),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      productsDisplayModeGrid = !productsDisplayModeGrid;
-                      displayModeIcon = !productsDisplayModeGrid
-                          ? const Icon(Icons.grid_view_rounded)
-                          : const Icon(Icons.view_list_rounded);
-                    });
-                  },
-                  icon: displayModeIcon,
+    return DefaultTabController(
+      length: categories.length,
+      child: RefreshIndicator(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor.withRed(100),
+        color: Theme.of(context).highlightColor,
+        onRefresh: _handleRefresh,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(S.current.menu_tab),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    productsDisplayModeGrid = !productsDisplayModeGrid;
+                    displayModeIcon = !productsDisplayModeGrid
+                        ? const Icon(Icons.grid_view_rounded)
+                        : const Icon(Icons.view_list_rounded);
+                    context.read<ProductBloc>().add(ProductShowAllEvent(
+                          products: products,
+                          categories: categories,
+                          displayMode: productsDisplayModeGrid,
+                          selectedTab: selectedTab,
+                        ));
+                  });
+                },
+                icon: displayModeIcon,
+              ),
+            ],
+            bottom: TabBar(
+              controller: _tabController,
+              indicatorColor: Theme.of(context).highlightColor,
+              isScrollable: true,
+              tabs: categories.map((category) {
+                return Tab(
+                  text: category.name,
+                );
+              }).toList(),
+            ),
+          ),
+          body: ScrollConfiguration(
+            behavior: const ScrollBehavior(
+              androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+            ),
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: categories.map((category) {
+                      final categoryProducts = products
+                          .where((element) => element.categoryId == category.id)
+                          .toList();
+                      if (categoryProducts.isEmpty) {
+                        return Center(
+                          child: Text(S.current.no_dishes),
+                        );
+                      }
+                      if (productsDisplayModeGrid == false) {
+                        return ProductsCarouselSliderPage(
+                          categoryProducts: categoryProducts,
+                          productsDisplayModeGrid: productsDisplayModeGrid,
+                        );
+                      } else {
+                        return ProductsGridViewPage(
+                          categoryProducts: categoryProducts,
+                          productsDisplayModeGrid: productsDisplayModeGrid,
+                        );
+                      }
+                    }).toList(),
+                  ),
                 ),
               ],
-              bottom: TabBar(
-                controller: _tabController,
-                indicatorColor: Theme.of(context).highlightColor,
-                isScrollable: true,
-                tabs: categories.map((category) {
-                  return Tab(
-                    text: category.name,
-                  );
-                }).toList(),
-              ),
-            ),
-            body: ScrollConfiguration(
-              behavior: const ScrollBehavior(
-                // ignore: deprecated_member_use
-                androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
-              ),
-              child: CustomScrollView(
-                slivers: [
-                  SliverFillRemaining(
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: categories.map((category) {
-                        final categoryProducts = products
-                            .where(
-                                (element) => element.categoryId == category.id)
-                            .toList();
-                        if (categoryProducts.isEmpty) {
-                          return Center(
-                            child: Text(S.current.no_dishes),
-                          );
-                        }
-                        if (productsDisplayModeGrid == false) {
-                          return ProductsCarouselSliderPage(
-                            categoryProducts: categoryProducts,
-                            productsDisplayModeGrid: productsDisplayModeGrid,
-                          );
-                        } else {
-                          return ProductsGridViewPage(
-                            categoryProducts: categoryProducts,
-                            productsDisplayModeGrid: productsDisplayModeGrid,
-                          );
-                        }
-                      }).toList(),
-                    ),
-                  ),
-                ],
-              ),
             ),
           ),
         ),

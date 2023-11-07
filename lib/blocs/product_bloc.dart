@@ -10,30 +10,42 @@ import '../repositories/user_repository.dart';
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc() : super(ProductLoading()) {
     on<ProductShowAllEvent>((event, emit) async {
-      emit(ProductLoading());
+      if (event.products == null || event.categories == null) {
+        emit(ProductLoading());
 
-      final hostname = UserRepository.instance?.hostname ?? "error";
+        final hostname = UserRepository.instance?.hostname ?? "error";
+        final products = await ProductRepository(
+          hostname: hostname,
+        ).getAll();
 
-      final products = await ProductRepository(
-        hostname: hostname,
-      ).getAll();
+        final categories = await CategoryRepository(
+          hostname: hostname,
+        ).getAll();
 
-      final categories = await CategoryRepository(
-        hostname: hostname,
-      ).getAll();
+        await MeasurementUnitRepository().getAll();
 
-      await MeasurementUnitRepository().getAll();
-
+        emit(ProductAllState(
+          categories: categories,
+          products: products,
+          displayMode: event.displayMode,
+          selectedTab: event.selectedTab,
+        ));
+        return;
+      }
       emit(ProductAllState(
-        categories: categories,
-        products: products,
+        categories: event.categories!,
+        products: event.products!,
         displayMode: event.displayMode,
         selectedTab: event.selectedTab,
       ));
     });
 
     on<ProductShowDetailsEvent>((event, emit) {
-      emit(ProductDetailsState(event.product));
+      emit(ProductDetailsState(
+        event.product,
+        event.displayMode,
+        event.selectedTab,
+      ));
     });
 
     on<ProductAddToOrderEvent>((event, emit) {

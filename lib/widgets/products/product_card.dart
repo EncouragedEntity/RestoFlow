@@ -7,6 +7,7 @@ import 'package:resto_flow/models/products/measurement_unit.dart';
 import 'package:resto_flow/repositories/measurement_unit_repository.dart';
 import 'package:resto_flow/widgets/products/product_detail_icon.dart';
 
+import '../../blocs/states/product_state.dart';
 import '../../generated/l10n.dart';
 import '../../models/products/product.dart';
 
@@ -14,10 +15,7 @@ class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.product,
-    required this.displayMode,
   });
-
-  final bool displayMode;
 
   final Product product;
   @override
@@ -27,10 +25,18 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   late final MeasurementUnit unit;
 
+  late final bool displayMode;
+  late final int selectedTab;
+
   @override
   void initState() {
     super.initState();
     unit = MeasurementUnitRepository().getById(widget.product.measurmentUnitId);
+    final productState = context.read<ProductBloc>().state;
+    if (productState is ProductAllState) {
+      displayMode = productState.displayMode;
+      selectedTab = productState.selectedTab;
+    }
   }
 
   @override
@@ -62,9 +68,11 @@ class _ProductCardState extends State<ProductCard> {
                 ),
                 ListTile(
                   onTap: () {
-                    context
-                        .read<ProductBloc>()
-                        .add(ProductShowDetailsEvent(widget.product));
+                    context.read<ProductBloc>().add(ProductShowDetailsEvent(
+                          widget.product,
+                          displayMode,
+                          selectedTab,
+                        ));
                     Navigator.of(context).pop();
                   },
                   leading: const Icon(Icons.more_vert),
@@ -76,9 +84,11 @@ class _ProductCardState extends State<ProductCard> {
         );
       },
       onLongPress: () {
-        context
-            .read<ProductBloc>()
-            .add(ProductShowDetailsEvent(widget.product));
+        context.read<ProductBloc>().add(ProductShowDetailsEvent(
+              widget.product,
+              displayMode,
+              selectedTab,
+            ));
       },
       borderRadius: const BorderRadius.all(
         Radius.circular(10),
@@ -95,7 +105,7 @@ class _ProductCardState extends State<ProductCard> {
         child: Column(
           children: [
             SizedBox(
-              height: !widget.displayMode ? 10 : 4,
+              height: !displayMode ? 10 : 4,
             ),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -103,46 +113,44 @@ class _ProductCardState extends State<ProductCard> {
               child: CachedNetworkImage(
                 imageUrl: widget.product.images?[0].url ??
                     'https://placehold.co/200x200/png',
-                height: !widget.displayMode ? 200 : 100,
-                width: !widget.displayMode ? 200 : 100,
+                height: !displayMode ? 200 : 100,
+                width: !displayMode ? 200 : 100,
                 fit: BoxFit.fitHeight,
               ),
             ),
             const SizedBox(height: 10),
             Text(
               productName,
-              style: TextStyle(fontSize: !widget.displayMode ? 20 : 14),
+              style: TextStyle(fontSize: !displayMode ? 20 : 14),
             ),
-            SizedBox(height: !widget.displayMode ? 20 : 10),
+            SizedBox(height: !displayMode ? 20 : 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (!widget.displayMode)
+                if (!displayMode)
                   ProductDetailIcon(
                     icon: const Icon(Icons.scale, size: 24),
                     text: Text(
                       "${widget.product.quantity} ${unit.abbreviation}",
-                      style: TextStyle(fontSize: !widget.displayMode ? 16 : 14),
+                      style: TextStyle(fontSize: !displayMode ? 16 : 14),
                     ),
                   ),
                 ProductDetailIcon(
-                  icon: Icon(Icons.attach_money,
-                      size: !widget.displayMode ? 24 : 18),
+                  icon: Icon(Icons.attach_money, size: !displayMode ? 24 : 18),
                   text: Text(
                     "${widget.product.price.toStringAsFixed(2)} грн.",
-                    style: TextStyle(fontSize: !widget.displayMode ? 16 : 14),
+                    style: TextStyle(fontSize: !displayMode ? 16 : 14),
                   ),
-                  boxHeight: !widget.displayMode ? 50 : 34,
+                  boxHeight: !displayMode ? 50 : 34,
                 ),
                 ProductDetailIcon(
-                  icon: Icon(Icons.access_time,
-                      size: !widget.displayMode ? 24 : 18),
+                  icon: Icon(Icons.access_time, size: !displayMode ? 24 : 18),
                   text: Text(
                     "${widget.product.cookingTime} хв.",
-                    style: TextStyle(fontSize: !widget.displayMode ? 16 : 14),
+                    style: TextStyle(fontSize: !displayMode ? 16 : 14),
                   ),
-                  boxHeight: !widget.displayMode ? 50 : 34,
+                  boxHeight: !displayMode ? 50 : 34,
                 ),
               ],
             )

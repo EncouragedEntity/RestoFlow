@@ -43,9 +43,15 @@ class ProductFailureState extends ProductState {
 
 class ProductDetailsState extends ProductState {
   final Product product;
+  final bool displayMode;
+  final int selectedTab;
 
-  ProductDetailsState(this.product);
+  ProductDetailsState(this.product, this.displayMode, this.selectedTab);
 
   @override
-  List<Object> get props => [product];
+  List<Object> get props => [
+        product,
+        displayMode,
+        selectedTab,
+      ];
 }

@@ -31,11 +31,14 @@ class _ProductHomePageState extends State<ProductHomePage> {
             product: state.product,
           );
         }
-        return Center(
-          child: CircularProgressIndicator(
-            color: Theme.of(context).primaryColor,
-          ),
-        );
+        if (state is ProductLoading) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Theme.of(context).primaryColor,
+            ),
+          );
+        }
+        return const Placeholder(); // TODO show error
       },
     );
   }
