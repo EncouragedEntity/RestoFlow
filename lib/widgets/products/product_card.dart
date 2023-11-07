@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
+import 'package:resto_flow/models/products/measurement_unit.dart';
+import 'package:resto_flow/repositories/measurement_unit_repository.dart';
 import 'package:resto_flow/widgets/products/product_detail_icon.dart';
 
 import '../../generated/l10n.dart';
 import '../../models/products/product.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   const ProductCard({
     super.key,
     required this.product,
@@ -18,12 +20,24 @@ class ProductCard extends StatelessWidget {
   final bool displayMode;
 
   final Product product;
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  late final MeasurementUnit unit;
+
+  @override
+  void initState() {
+    super.initState();
+    unit = MeasurementUnitRepository().getById(widget.product.measurmentUnitId);
+  }
 
   @override
   Widget build(BuildContext context) {
-    String productName = product.name.length > 13
-        ? "${product.name.substring(0, 13)}..."
-        : product.name;
+    String productName = widget.product.name.length > 13
+        ? "${widget.product.name.substring(0, 13)}..."
+        : widget.product.name;
 
     return InkWell(
       onTap: () async {
@@ -40,7 +54,7 @@ class ProductCard extends StatelessWidget {
                   onTap: () {
                     context
                         .read<ProductBloc>()
-                        .add(ProductAddToOrderEvent(product));
+                        .add(ProductAddToOrderEvent(widget.product));
                     Navigator.of(context).pop();
                   },
                   leading: const Icon(Icons.add),
@@ -50,7 +64,7 @@ class ProductCard extends StatelessWidget {
                   onTap: () {
                     context
                         .read<ProductBloc>()
-                        .add(ProductShowDetailsEvent(product));
+                        .add(ProductShowDetailsEvent(widget.product));
                     Navigator.of(context).pop();
                   },
                   leading: const Icon(Icons.more_vert),
@@ -62,7 +76,9 @@ class ProductCard extends StatelessWidget {
         );
       },
       onLongPress: () {
-        context.read<ProductBloc>().add(ProductShowDetailsEvent(product));
+        context
+            .read<ProductBloc>()
+            .add(ProductShowDetailsEvent(widget.product));
       },
       borderRadius: const BorderRadius.all(
         Radius.circular(10),
@@ -78,31 +94,55 @@ class ProductCard extends StatelessWidget {
         elevation: 5,
         child: Column(
           children: [
-            CachedNetworkImage(
-              imageUrl:
-                  product.images?[0].url ?? 'https://placehold.co/200x200/png',
-              height: !displayMode ? 200 : 100,
-              width: 200,
+            SizedBox(
+              height: !widget.displayMode ? 10 : 4,
             ),
-            SizedBox(height: !displayMode ? 30 : 10),
-            Text(productName),
-            SizedBox(height: !displayMode ? 32 : 10),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              clipBehavior: Clip.hardEdge,
+              child: CachedNetworkImage(
+                imageUrl: widget.product.images?[0].url ??
+                    'https://placehold.co/200x200/png',
+                height: !widget.displayMode ? 200 : 100,
+                width: !widget.displayMode ? 200 : 100,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              productName,
+              style: TextStyle(fontSize: !widget.displayMode ? 20 : 14),
+            ),
+            SizedBox(height: !widget.displayMode ? 20 : 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (!widget.displayMode)
+                  ProductDetailIcon(
+                    icon: const Icon(Icons.scale, size: 24),
+                    text: Text(
+                      "${widget.product.quantity} ${unit.abbreviation}",
+                      style: TextStyle(fontSize: !widget.displayMode ? 16 : 14),
+                    ),
+                  ),
                 ProductDetailIcon(
-                  icon: Icon(Icons.attach_money, size: !displayMode ? 24 : 20),
-                  text: Text("${product.price.toStringAsFixed(2)} грн."),
+                  icon: Icon(Icons.attach_money,
+                      size: !widget.displayMode ? 24 : 18),
+                  text: Text(
+                    "${widget.product.price.toStringAsFixed(2)} грн.",
+                    style: TextStyle(fontSize: !widget.displayMode ? 16 : 14),
+                  ),
+                  boxHeight: !widget.displayMode ? 50 : 34,
                 ),
-                !displayMode
-                    ? ProductDetailIcon(
-                        icon: const Icon(Icons.scale),
-                        text: Text("${product.quantity} гр."),
-                      )
-                    : Container(),
                 ProductDetailIcon(
-                  icon: const Icon(Icons.access_time, size: 20),
-                  text: Text("${product.cookingTime} хв."),
+                  icon: Icon(Icons.access_time,
+                      size: !widget.displayMode ? 24 : 18),
+                  text: Text(
+                    "${widget.product.cookingTime} хв.",
+                    style: TextStyle(fontSize: !widget.displayMode ? 16 : 14),
+                  ),
+                  boxHeight: !widget.displayMode ? 50 : 34,
                 ),
               ],
             )
