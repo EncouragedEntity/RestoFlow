@@ -17,11 +17,13 @@ class _ProductHomePageState extends State<ProductHomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductBloc, ProductState>(
-      builder: (context, state) {
+      builder: (ctx, state) {
         if (state is ProductAllState) {
           return MenuPage(
             categories: state.categories,
             products: state.products,
+            productsDisplayModeGrid: state.displayMode,
+            selectedTab: state.selectedTab,
           );
         }
         if (state is ProductDetailsState) {

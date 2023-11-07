@@ -6,7 +6,15 @@ abstract class ProductEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ProductShowAllEvent extends ProductEvent {}
+class ProductShowAllEvent extends ProductEvent {
+  final bool displayMode;
+  final int selectedTab;
+
+  ProductShowAllEvent({
+    this.displayMode = false,
+    this.selectedTab = 0,
+  });
+}
 
 class ProductShowDetailsEvent extends ProductEvent {
   final Product product;

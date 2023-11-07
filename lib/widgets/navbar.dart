@@ -43,7 +43,7 @@ class NavBar extends StatelessWidget {
         ),
         TabItem(
           icon: const Icon(
-            Icons.qr_code_2,
+            Icons.qr_code_scanner,
           ),
           title: S.of(context).qr_tab,
         ),

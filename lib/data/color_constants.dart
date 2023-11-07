@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 //
 
 const darkPrimaryColor = Color(0xFF8E0101);
-const darkAccentColor = Color(0xFFCA9000);
+const darkAccentColor = Color.fromARGB(255, 236, 170, 0);
 
 ThemeData appTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: const Color.fromARGB(255, 64, 0, 0),

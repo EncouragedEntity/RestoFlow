@@ -10,6 +10,7 @@ import '../blocs/events/auth_event.dart';
 import '../generated/l10n.dart';
 import '../blocs/states/auth_state.dart';
 import '../widgets/my_themed_alert.dart';
+import '../widgets/my_themed_button.dart';
 import '../widgets/settings_tile.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -205,7 +206,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-                    ElevatedButton(
+                    MyThemedButton(
+                      height: 50,
                       onPressed: () {
                         Logger().i("Entered update");
                         String newPassword = "";
@@ -233,7 +235,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         }
                         Logger().i("Update ended");
                       },
-                      child: const Text('Save Changes'),
+                      child: Text(S.current.save_changes),
                     ),
                   ],
                 ),

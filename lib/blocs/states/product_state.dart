@@ -13,13 +13,22 @@ class ProductLoading extends ProductState {}
 class ProductAllState extends ProductState {
   final List<ProductCategory> categories;
   final List<Product> products;
+  final bool displayMode;
+  final int selectedTab;
 
-  ProductAllState(this.categories, this.products);
+  ProductAllState({
+    required this.categories,
+    required this.products,
+    this.displayMode = false,
+    this.selectedTab = 0,
+  });
 
   @override
   List<Object> get props => [
         categories,
         products,
+        displayMode,
+        selectedTab,
       ];
 }
 
