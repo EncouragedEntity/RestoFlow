@@ -32,9 +32,9 @@ class _MenuPageState extends State<MenuPage>
     with SingleTickerProviderStateMixin {
   bool productsDisplayModeGrid = false;
   late Icon displayModeIcon;
-  int selectedTab = 0;
 
   late final TabController _tabController;
+  int selectedTab = 0; // Initialize with the default tab index.
 
   late final List<ProductCategory> categories;
   late final List<Product> products;
@@ -54,8 +54,13 @@ class _MenuPageState extends State<MenuPage>
     _tabController = TabController(
       length: categories.length,
       vsync: this,
-      initialIndex: selectedTab,
+      initialIndex: selectedTab, // Set the initial index based on stored value.
     );
+
+    _tabController.addListener(() {
+      // When the tab changes, update the selectedTab value.
+      selectedTab = _tabController.index;
+    });
   }
 
   Future<void> _handleRefresh() async {
@@ -66,9 +71,17 @@ class _MenuPageState extends State<MenuPage>
   }
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (categories.isNotEmpty) {
-      return DefaultTabController(
+    // Wrap the MenuPage widget with PageStorage
+    return PageStorage(
+      bucket: PageStorageBucket(), // Provide a storage bucket
+      child: DefaultTabController(
         length: categories.length,
         child: RefreshIndicator(
           backgroundColor:
@@ -103,7 +116,10 @@ class _MenuPageState extends State<MenuPage>
               ),
             ),
             body: ScrollConfiguration(
-              behavior: const ScrollBehavior(),
+              behavior: const ScrollBehavior(
+                // ignore: deprecated_member_use
+                androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+              ),
               child: CustomScrollView(
                 slivers: [
                   SliverFillRemaining(
@@ -138,11 +154,6 @@ class _MenuPageState extends State<MenuPage>
             ),
           ),
         ),
-      );
-    }
-    return Center(
-      child: CircularProgressIndicator(
-        color: Theme.of(context).primaryColor,
       ),
     );
   }
