@@ -32,7 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "connection_error": m0,
+        "cooking_time": MessageLookupByLibrary.simpleMessage("Cooking time:"),
         "details": MessageLookupByLibrary.simpleMessage("Dish details"),
+        "dish_content": MessageLookupByLibrary.simpleMessage("It includes:"),
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),

@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:resto_flow/models/products/image_dto.dart';
+import 'package:resto_flow/models/products/measurement_unit.dart';
+import 'package:resto_flow/repositories/measurement_unit_repository.dart';
 
 part 'product.g.dart';
 
@@ -18,6 +20,9 @@ class Product {
   final List<String> ingredients;
   final int cookingTime;
   final List<ImageDto>? images;
+
+  MeasurementUnit get unit =>
+      MeasurementUnitRepository().getById(measurmentUnitId);
 
   Product({
     required this.id,
@@ -67,4 +72,6 @@ class Product {
       images: images ?? this.images,
     );
   }
+
+  String get formattedPrice => "${price.toStringAsFixed(2)} грн.";
 }

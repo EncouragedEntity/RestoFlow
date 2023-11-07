@@ -389,6 +389,26 @@ class S {
       args: [],
     );
   }
+
+  /// `It includes:`
+  String get dish_content {
+    return Intl.message(
+      'It includes:',
+      name: 'dish_content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cooking time:`
+  String get cooking_time {
+    return Intl.message(
+      'Cooking time:',
+      name: 'cooking_time',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

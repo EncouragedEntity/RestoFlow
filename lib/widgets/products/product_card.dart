@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
-import 'package:resto_flow/models/products/measurement_unit.dart';
-import 'package:resto_flow/repositories/measurement_unit_repository.dart';
 import 'package:resto_flow/widgets/products/product_detail_icon.dart';
 
 import '../../blocs/states/product_state.dart';
@@ -23,15 +21,12 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  late final MeasurementUnit unit;
-
   late final bool displayMode;
   late final int selectedTab;
 
   @override
   void initState() {
     super.initState();
-    unit = MeasurementUnitRepository().getById(widget.product.measurmentUnitId);
     final productState = context.read<ProductBloc>().state;
     if (productState is ProductAllState) {
       displayMode = productState.displayMode;
@@ -132,14 +127,14 @@ class _ProductCardState extends State<ProductCard> {
                   ProductDetailIcon(
                     icon: const Icon(Icons.scale, size: 24),
                     text: Text(
-                      "${widget.product.quantity} ${unit.abbreviation}",
+                      "${widget.product.quantity} ${widget.product.unit.abbreviation}",
                       style: TextStyle(fontSize: !displayMode ? 16 : 14),
                     ),
                   ),
                 ProductDetailIcon(
                   icon: Icon(Icons.attach_money, size: !displayMode ? 24 : 18),
                   text: Text(
-                    "${widget.product.price.toStringAsFixed(2)} грн.",
+                    widget.product.formattedPrice,
                     style: TextStyle(fontSize: !displayMode ? 16 : 14),
                   ),
                   boxHeight: !displayMode ? 50 : 34,

@@ -33,7 +33,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Підтвердіть пароль"),
         "connection_error": m0,
+        "cooking_time":
+            MessageLookupByLibrary.simpleMessage("Час приготування"),
         "details": MessageLookupByLibrary.simpleMessage("Деталі про страву"),
+        "dish_content":
+            MessageLookupByLibrary.simpleMessage("До складу входить:"),
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Не маєте акаунта?"),
         "email": MessageLookupByLibrary.simpleMessage("Пошта"),

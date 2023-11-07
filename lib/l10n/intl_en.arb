@@ -32,6 +32,8 @@
     "stranger": "Stranger",
     "add_to_order":"Add to order",
     "details":"Dish details",
-    "no_dishes":"Empty here. For now (:"
+    "no_dishes":"Empty here. For now (:",
+    "dish_content":"It includes:",
+    "cooking_time":"Cooking time:"
 
 }
