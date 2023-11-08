@@ -34,6 +34,6 @@
     "details":"Dish details",
     "no_dishes":"Empty here. For now (:",
     "dish_content":"It includes:",
-    "cooking_time":"Cooking time:"
-
+    "cooking_time":"Cooking time:",
+    "order":"Your order"
 }

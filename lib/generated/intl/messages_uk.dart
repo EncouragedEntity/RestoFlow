@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("Новий пароль"),
         "no_dishes":
             MessageLookupByLibrary.simpleMessage("Тут порожньо. Поки що (:"),
+        "order": MessageLookupByLibrary.simpleMessage("Ваше замовлення"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Замовити"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Профіль"),

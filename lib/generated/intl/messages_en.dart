@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("New password"),
         "no_dishes":
             MessageLookupByLibrary.simpleMessage("Empty here. For now (:"),
+        "order": MessageLookupByLibrary.simpleMessage("Your order"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Order"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Profile"),
