@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/nav_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
+import 'package:resto_flow/pages/order_page.dart';
 import 'package:resto_flow/pages/products/product_home_page.dart';
 import 'package:resto_flow/pages/profile_page.dart';
 import 'package:resto_flow/pages/qr_scanner_page.dart';
@@ -27,6 +29,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
   }
+
+  final GlobalKey<ConvexAppBarState> _appBarKey =
+      GlobalKey<ConvexAppBarState>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +57,13 @@ class _HomePageState extends State<HomePage> {
                   if (productState is ProductLoading) {
                     context.read<ProductBloc>().add(ProductShowAllEvent());
                   }
-                  currentPage = const ProductHomePage();
+                  currentPage = ProductHomePage(appBarKey: _appBarKey);
+                  if (selectedIndex != 0) {
+                    _appBarKey.currentState?.animateTo(0);
+                  }
                   selectedIndex = 0;
                 } else if (navState == 1) {
-                  // TODO: Handle navigation to Order Page
-                  currentPage = const Placeholder();
+                  currentPage = const OrderPage();
                   selectedIndex = 1;
                 } else if (navState == 2) {
                   currentPage = const ScannerPage();
@@ -75,7 +82,10 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: currentPage,
                   ),
-                  NavBar(initialIndex: selectedIndex),
+                  NavBar(
+                    initialIndex: selectedIndex,
+                    appBarKey: _appBarKey,
+                  ),
                 ],
               );
             },
