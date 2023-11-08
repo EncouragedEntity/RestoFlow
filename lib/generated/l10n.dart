@@ -419,6 +419,46 @@ class S {
       args: [],
     );
   }
+
+  /// `You should scan qr first`
+  String get scan_first {
+    return Intl.message(
+      'You should scan qr first',
+      name: 'scan_first',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to scan page`
+  String get go_to_scan {
+    return Intl.message(
+      'Go to scan page',
+      name: 'go_to_scan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should login first`
+  String get login_first {
+    return Intl.message(
+      'You should login first',
+      name: 'login_first',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to login page`
+  String get go_to_login {
+    return Intl.message(
+      'Go to login page',
+      name: 'go_to_login',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -6,6 +6,7 @@ import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/nav_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
+import 'package:resto_flow/pages/order_history.dart';
 import 'package:resto_flow/pages/order_page.dart';
 import 'package:resto_flow/pages/products/product_home_page.dart';
 import 'package:resto_flow/pages/profile_page.dart';
@@ -69,8 +70,7 @@ class _HomePageState extends State<HomePage> {
                   currentPage = const ScannerPage();
                   selectedIndex = 2;
                 } else if (navState == 3) {
-                  // TODO: Handle navigation to Order history page
-                  currentPage = const Placeholder();
+                  currentPage = OrderHistoryPage(appBarKey: _appBarKey);
                   selectedIndex = 3;
                 } else if (navState == 4) {
                   currentPage = const ProfilePage();

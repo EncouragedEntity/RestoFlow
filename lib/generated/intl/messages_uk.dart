@@ -43,12 +43,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("Пошта"),
         "error": MessageLookupByLibrary.simpleMessage("Помилка"),
         "firstname": MessageLookupByLibrary.simpleMessage("Ім\'я"),
+        "go_to_login":
+            MessageLookupByLibrary.simpleMessage("Перейти до сторінки входу"),
+        "go_to_scan":
+            MessageLookupByLibrary.simpleMessage("Перейти до сканера"),
         "have_account": MessageLookupByLibrary.simpleMessage("Маєте акаунт?"),
         "hello": MessageLookupByLibrary.simpleMessage("Вітаємо,"),
         "history_tab": MessageLookupByLibrary.simpleMessage("Історія"),
         "lastname": MessageLookupByLibrary.simpleMessage("Прізвище"),
         "log_in": MessageLookupByLibrary.simpleMessage("Увійти"),
         "log_out": MessageLookupByLibrary.simpleMessage("Вийти"),
+        "login_first": MessageLookupByLibrary.simpleMessage(
+            "Спочатку, вам потрібно увійти в акаунт"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Меню"),
         "new_password": MessageLookupByLibrary.simpleMessage("Новий пароль"),
         "no_dishes":
@@ -59,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_tab": MessageLookupByLibrary.simpleMessage("Профіль"),
         "qr_tab": MessageLookupByLibrary.simpleMessage("Сканувати"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Зберегти зміни"),
+        "scan_first": MessageLookupByLibrary.simpleMessage(
+            "Спочатку, вам потрібно відсканувати код"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Зареєструватись"),
         "stranger": MessageLookupByLibrary.simpleMessage("Незнайомцю"),
         "tap_to_scan":

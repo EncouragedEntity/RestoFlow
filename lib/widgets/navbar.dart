@@ -13,12 +13,15 @@ class NavBar extends StatelessWidget {
   const NavBar({
     super.key,
     this.initialIndex,
+    required this.appBarKey,
   });
 
   final int? initialIndex;
+  final GlobalKey<ConvexAppBarState> appBarKey;
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
+      key: appBarKey,
       backgroundColor: Theme.of(context).primaryColor,
       style: TabStyle.react,
       initialActiveIndex: initialIndex,

@@ -1,15 +1,14 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resto_flow/blocs/events/nav_event.dart';
-import 'package:resto_flow/blocs/nav_bloc.dart';
 import 'package:resto_flow/blocs/order_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/blocs/states/order_state.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
 import 'package:resto_flow/pages/menu_page.dart';
-import 'package:resto_flow/widgets/my_themed_button.dart';
 
+import '../../generated/l10n.dart';
+import '../../widgets/page_blocker.dart';
 import 'product_details_page.dart';
 
 class ProductHomePage extends StatefulWidget {
@@ -52,26 +51,12 @@ class _ProductHomePageState extends State<ProductHomePage> {
             },
           );
         }
-        return Center(
-            child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: 250,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("You should scan qr first"),
-              MyThemedButton(
-                // TODO change texts
-                onPressed: () {
-                  context.read<NavBloc>().add(NavEvent.scanner);
-                  widget.appBarKey.currentState?.animateTo(2);
-                },
-                child: const Text("Go to scan page"),
-              ),
-            ],
-          ),
-        ));
+        return PageBlocker(
+          appBarKey: widget.appBarKey,
+          destinationIndex: 2,
+          text: S.current.scan_first,
+          buttonText: S.current.go_to_scan,
+        );
       },
     );
   }

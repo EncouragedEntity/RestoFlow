@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "error": MessageLookupByLibrary.simpleMessage("error"),
         "firstname": MessageLookupByLibrary.simpleMessage("First name"),
+        "go_to_login": MessageLookupByLibrary.simpleMessage("Go to login page"),
+        "go_to_scan": MessageLookupByLibrary.simpleMessage("Go to scan page"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
@@ -47,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastname": MessageLookupByLibrary.simpleMessage("Last name"),
         "log_in": MessageLookupByLibrary.simpleMessage("Log in"),
         "log_out": MessageLookupByLibrary.simpleMessage("Log out"),
+        "login_first":
+            MessageLookupByLibrary.simpleMessage("You should login first"),
         "menu_tab": MessageLookupByLibrary.simpleMessage("Menu"),
         "new_password": MessageLookupByLibrary.simpleMessage("New password"),
         "no_dishes":
@@ -57,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile_tab": MessageLookupByLibrary.simpleMessage("Profile"),
         "qr_tab": MessageLookupByLibrary.simpleMessage("Scan QR"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),
+        "scan_first":
+            MessageLookupByLibrary.simpleMessage("You should scan qr first"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "stranger": MessageLookupByLibrary.simpleMessage("Stranger"),
         "tap_to_scan": MessageLookupByLibrary.simpleMessage("Tap to scan"),

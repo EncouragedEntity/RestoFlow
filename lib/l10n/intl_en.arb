@@ -35,5 +35,9 @@
     "no_dishes":"Empty here. For now (:",
     "dish_content":"It includes:",
     "cooking_time":"Cooking time:",
-    "order":"Your order"
+    "order":"Your order",
+    "scan_first":"You should scan qr first",
+    "go_to_scan":"Go to scan page",
+    "login_first":"You should login first",
+    "go_to_login":"Go to login page"
 }

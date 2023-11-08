@@ -6,6 +6,7 @@ import 'package:logger/logger.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
 import 'package:resto_flow/blocs/order_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
+import 'package:resto_flow/blocs/states/auth_state.dart';
 import 'package:resto_flow/generated/l10n.dart';
 import 'package:resto_flow/pages/home_page.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
@@ -28,15 +29,18 @@ void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   var serverLink = "";
+  AuthState defaultState = AuthUnauthenticated();
   try {
     serverLink = await getServerLink();
     if (UserRepository.currentUser == null) {
-      await UserRepository(apiUrl: serverLink).automaticLogin();
+      final user = await UserRepository(apiUrl: serverLink).automaticLogin();
+      if (user != null) {
+        defaultState = AuthAuthenticated(user);
+      }
     }
   } on Exception catch (e) {
     Logger().e(e.toString());
   }
-
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then(
     (value) => runApp(
@@ -74,6 +78,7 @@ void main() async {
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
                 userRepository: UserRepository(apiUrl: serverLink),
+                state: defaultState,
               ),
             ),
             BlocProvider<NavBloc>(

@@ -58,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
         Theme.of(context).scaffoldBackgroundColor.withRed(100);
 
     return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
+      builder: (ctx, state) {
         if (state is AuthAuthenticated) {
           final user = state.user;
           return Scaffold(

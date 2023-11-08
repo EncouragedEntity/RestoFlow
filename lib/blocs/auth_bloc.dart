@@ -6,7 +6,10 @@ import '../repositories/user_repository.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserRepository userRepository;
-  AuthBloc({required this.userRepository}) : super(AuthUnauthenticated()) {
+  AuthBloc({
+    required this.userRepository,
+    required AuthState state,
+  }) : super(state) {
     on<AuthUpdateUserEvent>(
       (event, emit) async {
         emit(AuthLoading());
