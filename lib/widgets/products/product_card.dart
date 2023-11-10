@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resto_flow/blocs/events/order_event.dart';
 import 'package:resto_flow/blocs/events/product_event.dart';
+import 'package:resto_flow/blocs/order_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/widgets/products/product_detail_icon.dart';
 
@@ -54,8 +56,8 @@ class _ProductCardState extends State<ProductCard> {
                 ListTile(
                   onTap: () {
                     context
-                        .read<ProductBloc>()
-                        .add(ProductAddToOrderEvent(widget.product));
+                        .read<OrderBloc>()
+                        .add(OrderAddProductEvent(widget.product));
                     Navigator.of(context).pop();
                   },
                   leading: const Icon(Icons.add),

@@ -17,7 +17,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
 
         final hostname = UserRepository.instance?.hostname ?? "error";
 
-        final Order currentOrder = OrderRepository().currentOrder;
+        final Order currentOrder = OrderRepository().currentOrder!;
 
         final categories = await CategoryRepository(
           hostname: hostname,
@@ -51,10 +51,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         event.displayMode,
         event.selectedTab,
       ));
-    });
-
-    on<ProductAddToOrderEvent>((event, emit) {
-      OrderRepository().addProductToOrder(event.product);
     });
   }
 }

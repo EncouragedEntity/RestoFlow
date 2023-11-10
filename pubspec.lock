@@ -861,6 +861,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  skeletons:
+    dependency: "direct main"
+    description:
+      name: skeletons
+      sha256: "5b2d08ae7f908ee1f7007ca99f8dcebb4bfc1d3cb2143dec8d112a5be5a45c8f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -922,6 +930,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  stomp_dart_client:
+    dependency: "direct main"
+    description:
+      name: stomp_dart_client
+      sha256: "0972bc5b96e76b05ac5787f240f502aa8251d973326fc067a6173c88a8818b96"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   stream_channel:
     dependency: transitive
     description:
@@ -1059,7 +1075,7 @@ packages:
     source: hosted
     version: "0.1.4-beta"
   web_socket_channel:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: web_socket_channel
       sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b

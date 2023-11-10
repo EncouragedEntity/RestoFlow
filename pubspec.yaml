@@ -60,6 +60,9 @@ dependencies:
   cached_network_image: ^3.3.0
   accordion: ^2.6.0
   flutter_svg: ^2.0.9
+  web_socket_channel: ^2.4.0
+  stomp_dart_client: ^1.0.0
+  skeletons: ^0.0.3
 
 
 dev_dependencies:

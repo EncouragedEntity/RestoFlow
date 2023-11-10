@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/widgets/page_blocker.dart';
 
-import '../blocs/auth_bloc.dart';
-import '../blocs/states/auth_state.dart';
-import '../generated/l10n.dart';
+import '../../blocs/auth_bloc.dart';
+import '../../blocs/states/auth_state.dart';
+import '../../generated/l10n.dart';
 
 class OrderHistoryPage extends StatelessWidget {
   const OrderHistoryPage({super.key, required this.appBarKey});

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resto_flow/blocs/events/order_event.dart';
 import 'package:resto_flow/blocs/events/product_event.dart';
+import 'package:resto_flow/blocs/order_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
 import 'package:resto_flow/models/products/product.dart';
@@ -104,8 +106,8 @@ class ProductDetailsPage extends StatelessWidget {
                     MyThemedButton(
                       height: 50,
                       onPressed: () {
-                        context.read<ProductBloc>().add(
-                              ProductAddToOrderEvent(product),
+                        context.read<OrderBloc>().add(
+                              OrderAddProductEvent(product),
                             );
                       },
                       child: Text(S.current.add_to_order),

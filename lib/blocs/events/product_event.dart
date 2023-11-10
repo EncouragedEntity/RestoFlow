@@ -35,11 +35,3 @@ class ProductShowDetailsEvent extends ProductEvent {
         selectedTab,
       ];
 }
-
-class ProductAddToOrderEvent extends ProductEvent {
-  final Product product;
-
-  ProductAddToOrderEvent(this.product);
-  @override
-  List<Object> get props => [product];
-}

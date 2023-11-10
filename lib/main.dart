@@ -41,6 +41,7 @@ void main() async {
   } on Exception catch (e) {
     Logger().e(e.toString());
   }
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then(
     (value) => runApp(

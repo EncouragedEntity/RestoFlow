@@ -46,4 +46,25 @@ class ProductRepository {
       throw Exception('Failed to load products: ${response.reasonPhrase}');
     }
   }
+
+  Future<Product> getById(int productId) async {
+    final response = await http.get(
+      Uri.parse("$hostname$dineProduct/$productId"),
+    );
+
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(utf8.decode(response.bodyBytes));
+
+      Product product = Product.fromJson(jsonData['productDto']);
+      final List<ImageDto> images = (jsonData['imageDto'] as List)
+          .map((imageData) => ImageDto.fromJson(imageData))
+          .toList();
+
+      product = product.copyWith(images: images);
+
+      return product;
+    } else {
+      throw Exception('Failed to load product');
+    }
+  }
 }
