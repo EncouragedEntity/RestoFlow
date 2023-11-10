@@ -11,9 +11,10 @@ class ProductRepository {
 
   ProductRepository({required this.hostname});
 
-  Future<List<Product>> getAll() async {
+  Future<List<Product>> getAll(int restaurantId) async {
     final response = await http.get(
-      Uri.parse("$hostname$dineProduct/all"),
+      Uri.parse(
+          "$hostname$dineProduct/all?filterBy.restaurantId=$restaurantId&pagination.page=0&pagination.pageSize=100"),
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
     );
 
@@ -22,7 +23,7 @@ class ProductRepository {
           List<Map<String, dynamic>>.from(
         jsonDecode(
           utf8.decode(response.bodyBytes),
-        ),
+        )['dtos'],
       );
 
       final List<Product> products = jsonData.map((jsonProduct) {

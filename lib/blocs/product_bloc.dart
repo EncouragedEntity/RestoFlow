@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
+import 'package:resto_flow/models/order.dart';
 import 'package:resto_flow/repositories/category_repository.dart';
 import 'package:resto_flow/repositories/measurement_unit_repository.dart';
+import 'package:resto_flow/repositories/order_repository.dart';
 import 'package:resto_flow/repositories/product_repository.dart';
 
 import '../repositories/user_repository.dart';
@@ -14,13 +16,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         emit(ProductLoading());
 
         final hostname = UserRepository.instance?.hostname ?? "error";
-        final products = await ProductRepository(
-          hostname: hostname,
-        ).getAll();
+
+        final Order currentOrder = OrderRepository().currentOrder;
 
         final categories = await CategoryRepository(
           hostname: hostname,
-        ).getAll();
+        ).getAll(currentOrder.restaurantId!);
+
+        final products = await ProductRepository(
+          hostname: hostname,
+        ).getAll(currentOrder.restaurantId!);
 
         await MeasurementUnitRepository().getAll();
 
@@ -49,7 +54,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     });
 
     on<ProductAddToOrderEvent>((event, emit) {
-      // TODO add "add to order" logic
+      OrderRepository().addProductToOrder(event.product);
     });
   }
 }

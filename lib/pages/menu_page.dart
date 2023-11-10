@@ -122,6 +122,7 @@ class _MenuPageState extends State<MenuPage>
             ),
             body: ScrollConfiguration(
               behavior: const ScrollBehavior(
+                // ignore: deprecated_member_use
                 androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
               ),
               child: CustomScrollView(

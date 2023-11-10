@@ -10,9 +10,9 @@ class CategoryRepository {
 
   CategoryRepository({required this.hostname});
 
-  Future<List<ProductCategory>> getAll() async {
+  Future<List<ProductCategory>> getAll(int restaurantId) async {
     final response = await http.get(
-      Uri.parse("$hostname$dineProductCategory/all"),
+      Uri.parse("$hostname$dineProductCategory/all/$restaurantId"),
       headers: {'Content-Type': 'application/json'},
     );
 

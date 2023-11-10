@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
 import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/nav_bloc.dart';
+import 'package:resto_flow/blocs/order_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
+import 'package:resto_flow/blocs/states/order_state.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
 import 'package:resto_flow/pages/order_history.dart';
 import 'package:resto_flow/pages/order_page.dart';
@@ -55,7 +57,9 @@ class _HomePageState extends State<HomePage> {
                 if (navState == 0) {
                   final productState =
                       BlocProvider.of<ProductBloc>(context).state;
-                  if (productState is ProductLoading) {
+                  final orderState = BlocProvider.of<OrderBloc>(context).state;
+                  if (productState is ProductLoading &&
+                      orderState is OrderTableSetState) {
                     context.read<ProductBloc>().add(ProductShowAllEvent());
                   }
                   currentPage = ProductHomePage(appBarKey: _appBarKey);

@@ -23,24 +23,24 @@ class _ProductHomePageState extends State<ProductHomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrderBloc, OrderState>(
-      builder: (orderCtx, state) {
-        if (state is OrderTableSetState && state.tableId.isNotEmpty) {
+      builder: (orderCtx, orderState) {
+        if (orderState is OrderTableSetState && orderState.tableId.isNotEmpty) {
           return BlocBuilder<ProductBloc, ProductState>(
-            builder: (productCtx, state) {
-              if (state is ProductAllState) {
+            builder: (productCtx, productState) {
+              if (productState is ProductAllState) {
                 return MenuPage(
-                  categories: state.categories,
-                  products: state.products,
-                  productsDisplayModeGrid: state.displayMode,
-                  selectedTab: state.selectedTab,
+                  categories: productState.categories,
+                  products: productState.products,
+                  productsDisplayModeGrid: productState.displayMode,
+                  selectedTab: productState.selectedTab,
                 );
               }
-              if (state is ProductDetailsState) {
+              if (productState is ProductDetailsState) {
                 return ProductDetailsPage(
-                  product: state.product,
+                  product: productState.product,
                 );
               }
-              if (state is ProductLoading) {
+              if (productState is ProductLoading) {
                 return Center(
                   child: CircularProgressIndicator(
                     color: Theme.of(context).primaryColor,
