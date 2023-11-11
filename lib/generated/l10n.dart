@@ -390,6 +390,16 @@ class S {
     );
   }
 
+  /// `Crickets sing here...`
+  String get empty_here {
+    return Intl.message(
+      'Crickets sing here...',
+      name: 'empty_here',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `It includes:`
   String get dish_content {
     return Intl.message(
@@ -411,10 +421,10 @@ class S {
   }
 
   /// `Your order`
-  String get order {
+  String get your_order {
     return Intl.message(
       'Your order',
-      name: 'order',
+      name: 'your_order',
       desc: '',
       args: [],
     );
@@ -455,6 +465,26 @@ class S {
     return Intl.message(
       'Go to login page',
       name: 'go_to_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to menu page`
+  String get go_to_menu {
+    return Intl.message(
+      'Go to menu page',
+      name: 'go_to_menu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order`
+  String get order {
+    return Intl.message(
+      'Order',
+      name: 'order',
       desc: '',
       args: [],
     );

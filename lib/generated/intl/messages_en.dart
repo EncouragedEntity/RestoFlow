@@ -38,9 +38,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "empty_here":
+            MessageLookupByLibrary.simpleMessage("Crickets sing here..."),
         "error": MessageLookupByLibrary.simpleMessage("error"),
         "firstname": MessageLookupByLibrary.simpleMessage("First name"),
         "go_to_login": MessageLookupByLibrary.simpleMessage("Go to login page"),
+        "go_to_menu": MessageLookupByLibrary.simpleMessage("Go to menu page"),
         "go_to_scan": MessageLookupByLibrary.simpleMessage("Go to scan page"),
         "have_account":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
@@ -55,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("New password"),
         "no_dishes":
             MessageLookupByLibrary.simpleMessage("Empty here. For now (:"),
-        "order": MessageLookupByLibrary.simpleMessage("Your order"),
+        "order": MessageLookupByLibrary.simpleMessage("Order"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Order"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -79,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "validation_re_password_valid":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "want_to_log_out": MessageLookupByLibrary.simpleMessage(
-            "Do you really want to log out?")
+            "Do you really want to log out?"),
+        "your_order": MessageLookupByLibrary.simpleMessage("Your order")
       };
 }

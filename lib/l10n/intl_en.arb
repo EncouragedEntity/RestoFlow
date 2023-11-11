@@ -33,11 +33,14 @@
     "add_to_order":"Add to order",
     "details":"Dish details",
     "no_dishes":"Empty here. For now (:",
+    "empty_here":"Crickets sing here...",
     "dish_content":"It includes:",
     "cooking_time":"Cooking time:",
-    "order":"Your order",
+    "your_order":"Your order",
     "scan_first":"You should scan qr first",
     "go_to_scan":"Go to scan page",
     "login_first":"You should login first",
-    "go_to_login":"Go to login page"
+    "go_to_login":"Go to login page",
+    "go_to_menu":"Go to menu page",
+    "order":"Order"
 }

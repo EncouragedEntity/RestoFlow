@@ -41,10 +41,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Не маєте акаунта?"),
         "email": MessageLookupByLibrary.simpleMessage("Пошта"),
+        "empty_here":
+            MessageLookupByLibrary.simpleMessage("Тут співають цвіркуни..."),
         "error": MessageLookupByLibrary.simpleMessage("Помилка"),
         "firstname": MessageLookupByLibrary.simpleMessage("Ім\'я"),
         "go_to_login":
             MessageLookupByLibrary.simpleMessage("Перейти до сторінки входу"),
+        "go_to_menu": MessageLookupByLibrary.simpleMessage("Перейти в меню"),
         "go_to_scan":
             MessageLookupByLibrary.simpleMessage("Перейти до сканера"),
         "have_account": MessageLookupByLibrary.simpleMessage("Маєте акаунт?"),
@@ -59,7 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("Новий пароль"),
         "no_dishes":
             MessageLookupByLibrary.simpleMessage("Тут порожньо. Поки що (:"),
-        "order": MessageLookupByLibrary.simpleMessage("Ваше замовлення"),
+        "order": MessageLookupByLibrary.simpleMessage("Замовити"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Замовити"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Профіль"),
@@ -84,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "validation_re_password_valid":
             MessageLookupByLibrary.simpleMessage("Паролі не збігаються"),
         "want_to_log_out":
-            MessageLookupByLibrary.simpleMessage("Ви дійсно хочете вийти?")
+            MessageLookupByLibrary.simpleMessage("Ви дійсно хочете вийти?"),
+        "your_order": MessageLookupByLibrary.simpleMessage("Ваше замовлення")
       };
 }
