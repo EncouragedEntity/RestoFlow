@@ -80,6 +80,7 @@ class StompSocketService {
             'ngrok-skip-browser-warning': '69420',
             'Connection': 'upgrade',
             'Upgrade': 'websocket',
+            'heart-beat': '5000,5000',
           },
         ),
       );
@@ -163,7 +164,7 @@ class StompSocketService {
 
   void deleteProductFromOrder(int productId, int quantity) {
     if (isSocketConnected) {
-      final socketProduct = SocketProductData(productId, quantity);
+      final socketProduct = [SocketProductData(productId, quantity)];
 
       final string = jsonEncode(socketProduct);
 

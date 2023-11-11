@@ -10,6 +10,7 @@ import 'package:resto_flow/widgets/products/product_detail_icon.dart';
 import '../../blocs/states/product_state.dart';
 import '../../generated/l10n.dart';
 import '../../models/products/product.dart';
+import '../../pages/products/product_details_page.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({
@@ -41,13 +42,17 @@ class _ProductCardState extends State<ProductCard> {
     String productName = widget.product.name.length > 13
         ? "${widget.product.name.substring(0, 13)}..."
         : widget.product.name;
+    String productImageUrl = 'https://placehold.co/200x200/png';
+
+    if (widget.product.images?.isNotEmpty ?? false) {
+      productImageUrl = widget.product.images![0].url;
+    }
 
     return InkWell(
       onTap: () async {
         showModalBottomSheet(
           useSafeArea: true,
-          backgroundColor:
-              Theme.of(context).scaffoldBackgroundColor.withRed(100),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           context: context,
           builder: (ctx) {
             return Column(
@@ -65,12 +70,25 @@ class _ProductCardState extends State<ProductCard> {
                 ),
                 ListTile(
                   onTap: () {
-                    context.read<ProductBloc>().add(ProductShowDetailsEvent(
-                          widget.product,
-                          displayMode,
-                          selectedTab,
-                        ));
                     Navigator.of(context).pop();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) {
+                          return ProductDetailsPage(
+                            product: widget.product,
+                            allowToAdd: true,
+                          );
+                        },
+                      ),
+                    ).then(
+                      (value) {
+                        if (value == true) {
+                          context
+                              .read<OrderBloc>()
+                              .add(OrderAddProductEvent(widget.product));
+                        }
+                      },
+                    );
                   },
                   leading: const Icon(Icons.more_vert),
                   title: Text(S.current.details),
@@ -108,8 +126,7 @@ class _ProductCardState extends State<ProductCard> {
               borderRadius: BorderRadius.circular(10),
               clipBehavior: Clip.hardEdge,
               child: CachedNetworkImage(
-                imageUrl: widget.product.images?[0].url ??
-                    'https://placehold.co/200x200/png',
+                imageUrl: productImageUrl,
                 height: !displayMode ? 200 : 100,
                 width: !displayMode ? 200 : 100,
                 fit: BoxFit.fitHeight,

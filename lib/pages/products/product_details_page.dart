@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resto_flow/blocs/events/order_event.dart';
-import 'package:resto_flow/blocs/events/product_event.dart';
-import 'package:resto_flow/blocs/order_bloc.dart';
-import 'package:resto_flow/blocs/product_bloc.dart';
-import 'package:resto_flow/blocs/states/product_state.dart';
 import 'package:resto_flow/models/products/product.dart';
 import 'package:resto_flow/widgets/my_themed_button.dart';
 
 import '../../generated/l10n.dart';
-import '../../widgets/app_bar_logo.dart';
 import '../../widgets/products/product_image_container.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({
     super.key,
     required this.product,
+    required this.allowToAdd,
   });
 
   final Product product;
+  final bool allowToAdd;
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +21,7 @@ class ProductDetailsPage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          flexibleSpace: const AppBarLogo(),
-          leading: IconButton(
-            onPressed: () {
-              final productState = context.read<ProductBloc>().state;
-              if (productState is ProductDetailsState) {
-                context.read<ProductBloc>().add(ProductShowAllEvent(
-                      displayMode: productState.displayMode,
-                      selectedTab: productState.selectedTab,
-                    ));
-              }
-            },
-            icon: const Icon(Icons.arrow_back),
-          ),
-        ),
+        appBar: AppBar(),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,15 +84,14 @@ class ProductDetailsPage extends StatelessWidget {
                     const SizedBox(
                       height: 40,
                     ),
-                    MyThemedButton(
-                      height: 50,
-                      onPressed: () {
-                        context.read<OrderBloc>().add(
-                              OrderAddProductEvent(product),
-                            );
-                      },
-                      child: Text(S.current.add_to_order),
-                    ),
+                    if (allowToAdd)
+                      MyThemedButton(
+                        height: 50,
+                        onPressed: () {
+                          Navigator.of(context).pop<bool>(true);
+                        },
+                        child: Text(S.current.add_to_order),
+                      ),
                   ],
                 ),
               ),

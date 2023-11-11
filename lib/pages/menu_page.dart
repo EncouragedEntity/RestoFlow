@@ -6,7 +6,6 @@ import 'package:resto_flow/models/products/category.dart';
 import 'package:resto_flow/models/products/product.dart';
 
 import '../generated/l10n.dart';
-import '../widgets/app_bar_logo.dart';
 import 'products/products_carousel_slider_page.dart';
 import 'products/products_grid_view_page.dart';
 
@@ -83,13 +82,12 @@ class _MenuPageState extends State<MenuPage>
         length: categories.length,
         child: RefreshIndicator(
           backgroundColor:
-              Theme.of(context).scaffoldBackgroundColor.withRed(100),
+              Theme.of(context).scaffoldBackgroundColor.withGreen(70),
           color: Theme.of(context).highlightColor,
           onRefresh: _handleRefresh,
           child: Scaffold(
             appBar: AppBar(
               title: Text(S.current.menu_tab),
-              flexibleSpace: const AppBarLogo(),
               actions: [
                 IconButton(
                   onPressed: () {

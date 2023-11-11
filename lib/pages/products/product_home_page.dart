@@ -38,6 +38,7 @@ class _ProductHomePageState extends State<ProductHomePage> {
               if (productState is ProductDetailsState) {
                 return ProductDetailsPage(
                   product: productState.product,
+                  allowToAdd: true,
                 );
               }
               if (productState is ProductLoading) {

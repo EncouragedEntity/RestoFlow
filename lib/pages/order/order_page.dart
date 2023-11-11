@@ -27,7 +27,7 @@ class _OrderPageState extends State<OrderPage> {
 
   void onIncrease(Product product) async {
     StompSocketService.instance!.addProductsToOrder([product]);
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 250));
 
     setState(() {
       productDtos = OrderRepository().getProducts;
@@ -36,7 +36,8 @@ class _OrderPageState extends State<OrderPage> {
 
   void onDecrease(Product product) async {
     StompSocketService.instance!.removeProductsFromOrder([product]);
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 250));
+
     setState(() {
       productDtos = OrderRepository().getProducts;
     });
@@ -49,7 +50,13 @@ class _OrderPageState extends State<OrderPage> {
           .firstWhere((element) => element.productId == product.id)
           .quantity,
     );
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 250));
+    setState(() {
+      productDtos = OrderRepository().getProducts;
+    });
+  }
+
+  Future<void> onRefresh() async {
     setState(() {
       productDtos = OrderRepository().getProducts;
     });
@@ -60,7 +67,7 @@ class _OrderPageState extends State<OrderPage> {
     Widget pageContent = SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(S.current.order),
+          title: Text(S.current.your_order),
         ),
         body: Column(
           mainAxisSize: MainAxisSize.min,
@@ -73,17 +80,14 @@ class _OrderPageState extends State<OrderPage> {
                       AndroidOverscrollIndicator.stretch,
                 ),
                 child: RefreshIndicator(
-                  onRefresh: () async {
-                    setState(() {
-                      productDtos = OrderRepository().getProducts;
-                    });
-                  },
+                  onRefresh: onRefresh,
                   child: ListView(
                     children: productDtos
                         .map((e) => OrderProductListTile(
                               e,
                               onInscrease: onIncrease,
                               onDecrease: onDecrease,
+                              onDelete: onDelete,
                             ))
                         .toList(),
                   ),
@@ -95,7 +99,7 @@ class _OrderPageState extends State<OrderPage> {
               child: MyThemedButton(
                 height: 50,
                 onPressed: () {},
-                child: const Text("Order"),
+                child: Text(S.current.order),
               ),
             ),
             const SizedBox(
@@ -110,8 +114,8 @@ class _OrderPageState extends State<OrderPage> {
       pageContent = PageBlocker(
         appBarKey: widget.appBarKey,
         destinationIndex: 0,
-        text: "Empty here, try to order something",
-        buttonText: "Go to menu",
+        text: S.current.empty_here,
+        buttonText: S.current.go_to_menu,
       );
     }
 

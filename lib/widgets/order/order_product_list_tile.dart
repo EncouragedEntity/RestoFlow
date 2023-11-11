@@ -1,10 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/models/products/order_product_dto.dart';
 import 'package:resto_flow/models/products/product.dart';
+import 'package:resto_flow/pages/products/product_details_page.dart';
 import 'package:resto_flow/repositories/product_repository.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
 import 'package:skeletons/skeletons.dart';
+
+import '../../blocs/events/order_event.dart';
+import '../../blocs/order_bloc.dart';
 
 class OrderProductListTile extends StatefulWidget {
   const OrderProductListTile(
@@ -12,11 +17,13 @@ class OrderProductListTile extends StatefulWidget {
     super.key,
     required this.onInscrease,
     required this.onDecrease,
+    required this.onDelete,
   });
   final OrderProductDto productDto;
 
   final void Function(Product product) onInscrease;
   final void Function(Product product) onDecrease;
+  final void Function(Product product) onDelete;
 
   @override
   State<OrderProductListTile> createState() => _OrderProductListTileState();
@@ -58,6 +65,26 @@ class _OrderProductListTileState extends State<OrderProductListTile> {
           final Product product = snapshot.data!;
 
           return ListTile(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return ProductDetailsPage(
+                      product: product,
+                      allowToAdd: false,
+                    );
+                  },
+                ),
+              ).then(
+                (value) async {
+                  if (value == true) {
+                    context
+                        .read<OrderBloc>()
+                        .add(OrderAddProductEvent(product));
+                  }
+                },
+              );
+            },
             leading: ClipRRect(
               clipBehavior: Clip.hardEdge,
               borderRadius: BorderRadius.circular(10),
@@ -71,7 +98,7 @@ class _OrderProductListTileState extends State<OrderProductListTile> {
             ),
             title: Text(product.name),
             trailing: SizedBox(
-              width: 120,
+              width: 155,
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,6 +115,13 @@ class _OrderProductListTileState extends State<OrderProductListTile> {
                       widget.onInscrease(product);
                     },
                     icon: const Icon(Icons.add),
+                  ),
+                  const Spacer(),
+                  IconButton.filled(
+                    onPressed: () {
+                      widget.onDelete(product);
+                    },
+                    icon: const Icon(Icons.delete),
                   ),
                 ],
               ),
