@@ -92,7 +92,6 @@ flutter:
   assets:
     - assets/icon.png
     - assets/splash.png
-    - assets/transp_back.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
