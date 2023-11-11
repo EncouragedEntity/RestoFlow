@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 // --accent: #ca9000;
 //
 
-const darkPrimaryColor = Color(0xFF8E0101);
-const darkAccentColor = Color.fromARGB(255, 236, 170, 0);
+const darkPrimaryColor = Color(0xFF004225);
+const darkAccentColor = Color(0xFFFFB000);
 
 ThemeData appTheme = ThemeData.dark().copyWith(
-  scaffoldBackgroundColor: const Color.fromARGB(255, 64, 0, 0),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 0, 46, 26),
   primaryColor: darkPrimaryColor,
   primaryColorLight: darkPrimaryColor,
   primaryColorDark: darkPrimaryColor,
@@ -23,10 +23,10 @@ ThemeData appTheme = ThemeData.dark().copyWith(
   ),
   textTheme: const TextTheme(
     bodyLarge: TextStyle(
-      color: Color(0xFFFEF1F1),
+      color: Color(0xFFF5F5DC),
     ),
     bodyMedium: TextStyle(
-      color: Color(0xFFFEF1F1),
+      color: Color(0xFFF5F5DC),
     ),
   ),
 );

@@ -20,7 +20,7 @@ class MyThemedButton extends StatelessWidget {
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(
-                Theme.of(context).scaffoldBackgroundColor.withRed(100),
+                Theme.of(context).scaffoldBackgroundColor.withGreen(70),
               ),
               foregroundColor: MaterialStatePropertyAll(
                 Theme.of(context).highlightColor,

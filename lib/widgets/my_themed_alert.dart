@@ -18,7 +18,7 @@ class MyThemedAlert extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor.withRed(100),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor.withGreen(70),
       title: title,
       content: Wrap(
         children: [content],

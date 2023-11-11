@@ -55,7 +55,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final tilesBackgroundColor =
-        Theme.of(context).scaffoldBackgroundColor.withRed(100);
+        Theme.of(context).scaffoldBackgroundColor.withGreen(70);
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (ctx, state) {
