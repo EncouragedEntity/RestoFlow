@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
+import 'package:resto_flow/repositories/payment_repository.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
 import 'package:resto_flow/widgets/auth/pass_text_field.dart';
 
@@ -55,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final tilesBackgroundColor =
-        Theme.of(context).scaffoldBackgroundColor.withGreen(70);
+        Theme.of(context).scaffoldBackgroundColor.withGreen(57);
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (ctx, state) {
@@ -202,6 +203,89 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                             ],
+                          ),
+                          FutureBuilder(
+                            future: PaymentRepository().areDetailsSaved,
+                            builder: (context, snapshot) {
+                              if (snapshot.data == true) {
+                                return Accordion(
+                                  paddingListHorizontal: 0,
+                                  contentBorderColor: tilesBackgroundColor,
+                                  disableScrolling: true,
+                                  children: [
+                                    AccordionSection(
+                                      headerPadding: const EdgeInsets.all(8),
+                                      headerBackgroundColor:
+                                          tilesBackgroundColor,
+                                      headerBorderRadius: 10,
+                                      contentBorderRadius: 10,
+                                      contentVerticalPadding: 30,
+                                      contentBackgroundColor:
+                                          tilesBackgroundColor,
+                                      header: Text(S.current.card_details),
+                                      content: SettingsTile(
+                                        trailing: Expanded(
+                                          child: MyThemedButton(
+                                            height: 50,
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (ctx) {
+                                                  return MyThemedAlert(
+                                                    title: Text(S.current
+                                                        .confirm_deletion),
+                                                    content: Text(S.current
+                                                        .confirm_card_deletion_text),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        style: ButtonStyle(
+                                                          foregroundColor:
+                                                              MaterialStatePropertyAll(
+                                                            Theme.of(context)
+                                                                .highlightColor,
+                                                          ),
+                                                        ),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                            S.current.cancel),
+                                                      ),
+                                                      TextButton(
+                                                        style: ButtonStyle(
+                                                          foregroundColor:
+                                                              MaterialStatePropertyAll(
+                                                            Theme.of(context)
+                                                                .highlightColor,
+                                                          ),
+                                                        ),
+                                                        onPressed: () {
+                                                          PaymentRepository()
+                                                              .clearDetails();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text(
+                                                            S.current.clear),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child:
+                                                Text(S.current.clear_details),
+                                          ),
+                                        ),
+                                        showDivider: false,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }
+                              return Container();
+                            },
                           ),
                         ],
                       ),
