@@ -28,13 +28,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_to_order":
             MessageLookupByLibrary.simpleMessage("Додати до замовлення"),
         "cancel": MessageLookupByLibrary.simpleMessage("Відміна"),
+        "card_details":
+            MessageLookupByLibrary.simpleMessage("Реквізити картки"),
+        "card_number": MessageLookupByLibrary.simpleMessage("Номер картки"),
+        "checkout": MessageLookupByLibrary.simpleMessage("Оплата"),
+        "clear": MessageLookupByLibrary.simpleMessage("Очистити"),
+        "clear_details":
+            MessageLookupByLibrary.simpleMessage("Очистити реквізити"),
+        "confirm_card_deletion_text": MessageLookupByLibrary.simpleMessage(
+            "Ви дійсно хочете видалити реквізити своєї картки?"),
+        "confirm_deletion":
+            MessageLookupByLibrary.simpleMessage("Підтвердження видалення"),
         "confirm_log_out":
             MessageLookupByLibrary.simpleMessage("Підтвердження виходу"),
+        "confirm_order":
+            MessageLookupByLibrary.simpleMessage("Підтвердження замовлення"),
+        "confirm_order_text": MessageLookupByLibrary.simpleMessage(
+            "Готові зробити замовлення? Ви не зможете відмінити цю дію"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Підтвердіть пароль"),
         "connection_error": m0,
         "cooking_time":
             MessageLookupByLibrary.simpleMessage("Час приготування"),
+        "desired_price": MessageLookupByLibrary.simpleMessage("Бажана сума"),
         "details": MessageLookupByLibrary.simpleMessage("Деталі про страву"),
         "dish_content":
             MessageLookupByLibrary.simpleMessage("До складу входить:"),
@@ -65,15 +81,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "order": MessageLookupByLibrary.simpleMessage("Замовити"),
         "order_tab": MessageLookupByLibrary.simpleMessage("Замовити"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+        "pay": MessageLookupByLibrary.simpleMessage("Оплатити"),
+        "pay_partially":
+            MessageLookupByLibrary.simpleMessage("Оплатити частково"),
+        "payment_failure": MessageLookupByLibrary.simpleMessage(
+            "Помилка оплати. Спробуйте ще раз."),
+        "payment_successful":
+            MessageLookupByLibrary.simpleMessage("Оплата вдалась!"),
         "profile_tab": MessageLookupByLibrary.simpleMessage("Профіль"),
+        "qr_scan_error": MessageLookupByLibrary.simpleMessage(
+            "QR код не прочитано. Спробуйте ще раз"),
         "qr_tab": MessageLookupByLibrary.simpleMessage("Сканувати"),
+        "reset_table": MessageLookupByLibrary.simpleMessage("Скинути стіл"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Зберегти зміни"),
         "scan_first": MessageLookupByLibrary.simpleMessage(
             "Спочатку, вам потрібно відсканувати код"),
+        "send_reciept":
+            MessageLookupByLibrary.simpleMessage("Відправити чек поштою"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Зареєструватись"),
         "stranger": MessageLookupByLibrary.simpleMessage("Незнайомцю"),
         "tap_to_scan":
             MessageLookupByLibrary.simpleMessage("Натисніть, щоб відсканувати"),
+        "validation_card_number": MessageLookupByLibrary.simpleMessage(
+            "Введіть дійсний номер картки"),
         "validation_email": MessageLookupByLibrary.simpleMessage(
             "Будь ласка, введіть вашу пошту"),
         "validation_email_valid": MessageLookupByLibrary.simpleMessage(
@@ -88,6 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Паролі не збігаються"),
         "want_to_log_out":
             MessageLookupByLibrary.simpleMessage("Ви дійсно хочете вийти?"),
+        "want_to_save_card":
+            MessageLookupByLibrary.simpleMessage("Зберегти дані картки?"),
         "your_order": MessageLookupByLibrary.simpleMessage("Ваше замовлення")
       };
 }

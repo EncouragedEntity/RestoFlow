@@ -1,6 +1,7 @@
 {
     "error": "error",
     "connection_error": "Check your internet connection or try again later.\n {errorText}",
+    "qr_scan_error":"QR code wasnot read. Try again",
     "tap_to_scan": "Tap to scan",
     "menu_tab": "Menu",
     "order_tab": "Order",
@@ -42,5 +43,24 @@
     "login_first":"You should login first",
     "go_to_login":"Go to login page",
     "go_to_menu":"Go to menu page",
-    "order":"Order"
+    "order":"Order",
+    "checkout":"Checkout",
+    "want_to_save_card":"Save card details?",
+    "pay_partially":"Pay partially",
+    "send_reciept":"Send receipt to email",
+    "payment_successful":"Payment successful!",
+    "payment_failure":"Payment failed. Please try again.",
+    "pay":"Pay",
+    "confirm_order":"Confirm order",
+    "confirm_order_text":"Do you really want to order? You can't cancel it",
+    "card_details":"Card details",
+    "confirm_deletion":"Confirm deletion",
+    "confirm_card_deletion_text":"Do you really want to clear your card details?",
+    "clear":"Clear",
+    "clear_details":"Clear details",
+    "reset_table":"Reset table",
+    "card_number":"Card number",
+    "desired_price":"Price to pay",
+    "validation_card_number":"Enter valid card number"
+
 }

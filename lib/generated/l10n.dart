@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `QR code wasnot read. Try again`
+  String get qr_scan_error {
+    return Intl.message(
+      'QR code wasnot read. Try again',
+      name: 'qr_scan_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tap to scan`
   String get tap_to_scan {
     return Intl.message(
@@ -485,6 +495,186 @@ class S {
     return Intl.message(
       'Order',
       name: 'order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get checkout {
+    return Intl.message(
+      'Checkout',
+      name: 'checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save card details?`
+  String get want_to_save_card {
+    return Intl.message(
+      'Save card details?',
+      name: 'want_to_save_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay partially`
+  String get pay_partially {
+    return Intl.message(
+      'Pay partially',
+      name: 'pay_partially',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send receipt to email`
+  String get send_reciept {
+    return Intl.message(
+      'Send receipt to email',
+      name: 'send_reciept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment successful!`
+  String get payment_successful {
+    return Intl.message(
+      'Payment successful!',
+      name: 'payment_successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment failed. Please try again.`
+  String get payment_failure {
+    return Intl.message(
+      'Payment failed. Please try again.',
+      name: 'payment_failure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay`
+  String get pay {
+    return Intl.message(
+      'Pay',
+      name: 'pay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm order`
+  String get confirm_order {
+    return Intl.message(
+      'Confirm order',
+      name: 'confirm_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to order? You can't cancel it`
+  String get confirm_order_text {
+    return Intl.message(
+      'Do you really want to order? You can\'t cancel it',
+      name: 'confirm_order_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card details`
+  String get card_details {
+    return Intl.message(
+      'Card details',
+      name: 'card_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm deletion`
+  String get confirm_deletion {
+    return Intl.message(
+      'Confirm deletion',
+      name: 'confirm_deletion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to clear your card details?`
+  String get confirm_card_deletion_text {
+    return Intl.message(
+      'Do you really want to clear your card details?',
+      name: 'confirm_card_deletion_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear`
+  String get clear {
+    return Intl.message(
+      'Clear',
+      name: 'clear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear details`
+  String get clear_details {
+    return Intl.message(
+      'Clear details',
+      name: 'clear_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset table`
+  String get reset_table {
+    return Intl.message(
+      'Reset table',
+      name: 'reset_table',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card number`
+  String get card_number {
+    return Intl.message(
+      'Card number',
+      name: 'card_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price to pay`
+  String get desired_price {
+    return Intl.message(
+      'Price to pay',
+      name: 'desired_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter valid card number`
+  String get validation_card_number {
+    return Intl.message(
+      'Enter valid card number',
+      name: 'validation_card_number',
       desc: '',
       args: [],
     );
