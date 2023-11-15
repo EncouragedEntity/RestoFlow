@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:resto_flow/data/string_constants.dart';
 
 part 'order.g.dart';
 
@@ -11,6 +12,7 @@ class Order {
   double tips;
   final int? restaurantId;
   bool done = false;
+  String status;
 
   Order({
     this.id,
@@ -20,7 +22,16 @@ class Order {
     this.tips = 0,
     this.restaurantId,
     this.done = false,
+    this.status = orderStatusChoosing,
   });
+
+  String get formattedSumToPay {
+    if (sumToPay % 1 == 0) {
+      return sumToPay.toStringAsFixed(0);
+    } else {
+      return sumToPay.toStringAsFixed(2);
+    }
+  }
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
   Map<String, dynamic> toJson() => _$OrderToJson(this);
@@ -32,6 +43,7 @@ class Order {
     double? tips,
     int? restaurantId,
     bool? done,
+    String? status,
   }) {
     return Order(
       id: id ?? this.id,
@@ -41,6 +53,7 @@ class Order {
       tips: tips ?? this.tips,
       restaurantId: restaurantId ?? this.restaurantId,
       done: done ?? this.done,
+      status: status ?? this.status,
     );
   }
 }

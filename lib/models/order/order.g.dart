@@ -14,6 +14,7 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       tips: (json['tips'] as num?)?.toDouble() ?? 0,
       restaurantId: json['restaurantId'] as int?,
       done: json['done'] as bool? ?? false,
+      status: json['status'] as String? ?? orderStatusChoosing,
     );
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -24,4 +25,5 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'tips': instance.tips,
       'restaurantId': instance.restaurantId,
       'done': instance.done,
+      'status': instance.status,
     };

@@ -16,3 +16,7 @@ class OrderTableSetState extends OrderState {
   @override
   List<Object> get props => [tableId];
 }
+
+class OrderPaymentSuccessState extends OrderState {}
+
+class OrderPaymentFailureState extends OrderState {}

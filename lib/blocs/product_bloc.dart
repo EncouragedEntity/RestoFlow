@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resto_flow/blocs/events/product_event.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
-import 'package:resto_flow/models/order.dart';
 import 'package:resto_flow/repositories/category_repository.dart';
 import 'package:resto_flow/repositories/measurement_unit_repository.dart';
 import 'package:resto_flow/repositories/order_repository.dart';
 import 'package:resto_flow/repositories/product_repository.dart';
 
+import '../models/order/order.dart';
 import '../repositories/user_repository.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
