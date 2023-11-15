@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:logger/logger.dart';
+import 'package:resto_flow/repositories/user_repository.dart';
 import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
@@ -12,7 +13,7 @@ import '../models/products/push_order_dto.dart';
 import '../models/products/socket_product.dart';
 
 class StompSocketService {
-  final String serverLink;
+  final String serverLink = UserRepository.instance?.hostname ?? "";
   final String tableId;
   final void Function(StompFrame) onCallback;
   late StompClient _stompClient;
@@ -20,6 +21,8 @@ class StompSocketService {
 
   static bool isSocketConnected = false;
   static StompSocketService? instance;
+
+  static void disconnectStatic() => instance?.disconnect();
 
   final _productStreamController =
       StreamController<List<OrderProductDto>>.broadcast();
@@ -30,18 +33,15 @@ class StompSocketService {
   final Stopwatch _timer = Stopwatch();
 
   StompSocketService._internal({
-    required this.serverLink,
     required this.tableId,
     required this.onCallback,
   });
 
   factory StompSocketService({
-    required String serverLink,
     required String tableId,
     required void Function(StompFrame) onCallback,
   }) {
     instance ??= StompSocketService._internal(
-      serverLink: serverLink,
       tableId: tableId,
       onCallback: onCallback,
     );
@@ -51,9 +51,9 @@ class StompSocketService {
 
   Future<void> connect() async {
     if (isSocketConnected) {
-      return;
+      disconnect();
+      await connect();
     }
-    isSocketConnected = true;
 
     try {
       _stompClient = StompClient(
@@ -98,6 +98,8 @@ class StompSocketService {
         destination: '/topic/order/$tableId',
         callback: onCallback,
       );
+
+      isSocketConnected = true;
     } on Exception catch (e) {
       isSocketConnected = false;
       Logger().e(e.toString());
@@ -122,7 +124,10 @@ class StompSocketService {
           )
           .toList();
 
-      final pushOrderDto = PushOrderDto(socketProducts);
+      final pushOrderDto = PushOrderDto(
+        socketProducts,
+        UserRepository.currentUser?.id,
+      );
 
       _stompClient.send(
         destination: '/app/order/$tableId',
@@ -181,7 +186,7 @@ class StompSocketService {
     }
   }
 
-  void sendMockRequest() {
+  void sendMockRequest() async {
     final string = jsonEncode([SocketProductData(0, 0)]);
 
     _stompClient.send(
@@ -192,6 +197,21 @@ class StompSocketService {
         "content-length": string.length.toString(),
       },
     );
+
+    await Future.delayed(const Duration(milliseconds: 2000));
+  }
+
+  void setOrderStatus(String newStatus) async {
+    _stompClient.send(
+      destination: '/app/order/status/$tableId',
+      body: "\"$newStatus\"",
+      headers: {
+        "Content-Type": "application/json",
+        "content-length": newStatus.length.toString(),
+      },
+    );
+
+    await Future.delayed(const Duration(milliseconds: 500));
   }
 
   void onConnect(StompFrame connectFrame) {

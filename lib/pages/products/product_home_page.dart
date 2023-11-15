@@ -48,7 +48,9 @@ class _ProductHomePageState extends State<ProductHomePage> {
                   ),
                 );
               }
-              return const Placeholder(); // TODO show error
+              return const Center(
+                child: Text("Loading error"),
+              );
             },
           );
         }
