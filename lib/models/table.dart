@@ -1,8 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'table.g.dart';
-
-@JsonSerializable()
 class Table {
   String id;
   String name;
