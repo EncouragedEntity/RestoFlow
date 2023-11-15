@@ -7,14 +7,14 @@ part of 'image_dto.dart';
 // **************************************************************************
 
 ImageDto _$ImageDtoFromJson(Map<String, dynamic> json) => ImageDto(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       tableId: json['tableId'] as int?,
-      productId: json['productId'] as int,
-      restaurantId: json['restaurantId'] as int,
-      storageId: json['storageId'] as String,
-      fileName: json['fileName'] as String,
+      productId: json['productId'] as int?,
+      restaurantId: json['restaurantId'] as int?,
+      storageId: json['storageId'] as String?,
+      fileName: json['fileName'] as String?,
       url: json['url'] as String,
-      extension: json['extension'] as String,
+      extension: json['extension'] as String?,
     );
 
 Map<String, dynamic> _$ImageDtoToJson(ImageDto instance) => <String, dynamic>{

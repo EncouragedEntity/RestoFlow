@@ -7,13 +7,11 @@ class OrderProductDto {
   final int orderId;
   final int productId;
   final int quantity;
-  final String status;
 
   OrderProductDto({
     required this.orderId,
     required this.productId,
     required this.quantity,
-    required this.status,
   });
 
   factory OrderProductDto.fromJson(Map<String, dynamic> json) =>

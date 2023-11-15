@@ -2,22 +2,21 @@
 
 // ignore_for_file: unused_element
 
-part of 'order_product_dto.dart';
+part of 'order_user_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-OrderProductDto _$OrderProductDtoFromJson(Map<String, dynamic> json) =>
-    OrderProductDto(
+OrderUserDto _$OrderUserDtoFromJson(Map<String, dynamic> json) => OrderUserDto(
       orderId: json['orderId'] as int,
-      productId: json['productId'] as int,
-      quantity: json['quantity'] as int,
+      userId: json['userId'] as int,
+      sumPaid: (json['sumPaid'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$OrderProductDtoToJson(OrderProductDto instance) =>
+Map<String, dynamic> _$OrderUserDtoToJson(OrderUserDto instance) =>
     <String, dynamic>{
       'orderId': instance.orderId,
-      'productId': instance.productId,
-      'quantity': instance.quantity,
+      'userId': instance.userId,
+      'sumPaid': instance.sumPaid,
     };

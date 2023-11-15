@@ -8,8 +8,9 @@ part 'push_order_dto.g.dart';
 @JsonSerializable()
 class PushOrderDto {
   final List<SocketProductData> orderProductDtos;
+  final int? userId;
 
-  PushOrderDto(this.orderProductDtos);
+  PushOrderDto(this.orderProductDtos, this.userId);
 
   Map<String, dynamic> toJson() => _$PushOrderDtoToJson(this);
   String toJsonString() => jsonEncode(toJson());
