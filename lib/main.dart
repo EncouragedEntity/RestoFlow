@@ -3,12 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'package:resto_flow/blocs/auth_bloc.dart';
 import 'package:resto_flow/blocs/order_bloc.dart';
+import 'package:resto_flow/blocs/order_history_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/blocs/states/auth_state.dart';
 import 'package:resto_flow/generated/l10n.dart';
 import 'package:resto_flow/pages/home_page.dart';
+import 'package:resto_flow/repositories/order_repository.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
 import 'blocs/nav_bloc.dart';
 import 'config/ngrok.dart';
@@ -57,6 +60,7 @@ void main() async {
         debugShowCheckedModeBanner: false,
         home: MultiBlocProvider(
           providers: [
+            ChangeNotifierProvider(create: (context) => OrderRepository()),
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
                 userRepository: UserRepository(apiUrl: serverLink),
@@ -71,6 +75,9 @@ void main() async {
             ),
             BlocProvider<OrderBloc>(
               create: (context) => OrderBloc(),
+            ),
+            BlocProvider<OrderHistoryBloc>(
+              create: (context) => OrderHistoryBloc(),
             ),
           ],
           child: const HomePage(),
