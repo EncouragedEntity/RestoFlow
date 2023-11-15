@@ -63,6 +63,8 @@ dependencies:
   web_socket_channel: ^2.4.0
   stomp_dart_client: ^1.0.0
   skeletons: ^0.0.3
+  provider: ^6.1.1
+  restart_app: ^1.2.1
 
 
 dev_dependencies:
