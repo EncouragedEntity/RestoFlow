@@ -8,9 +8,15 @@ class CardDigitsTextField extends StatelessWidget {
   const CardDigitsTextField({
     super.key,
     required TextEditingController cardDigitsController,
+    required this.focusNode,
+    required this.onChanged,
+    required this.maxLength,
   }) : _cardDigitsController = cardDigitsController;
 
   final TextEditingController _cardDigitsController;
+  final FocusNode focusNode;
+  final void Function(String value) onChanged;
+  final int maxLength;
 
   final separator = " ";
 
@@ -19,7 +25,9 @@ class CardDigitsTextField extends StatelessWidget {
     return SizedBox(
       width: 364,
       child: TextFormField(
-        maxLength: 20,
+        onChanged: onChanged,
+        focusNode: focusNode,
+        maxLength: maxLength,
         controller: _cardDigitsController,
         textAlign: TextAlign.left,
         style: const TextStyle(

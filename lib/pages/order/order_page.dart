@@ -108,11 +108,7 @@ class _OrderPageState extends State<OrderPage> {
                 children: [
                   Expanded(
                     child: ScrollConfiguration(
-                      behavior: const ScrollBehavior(
-                        // ignore: deprecated_member_use
-                        androidOverscrollIndicator:
-                            AndroidOverscrollIndicator.stretch,
-                      ),
+                      behavior: const MaterialScrollBehavior(),
                       child: RefreshIndicator(
                         onRefresh: onRefresh,
                         child: ListView(
@@ -138,7 +134,8 @@ class _OrderPageState extends State<OrderPage> {
                       const SizedBox(width: 10),
                     ],
                   ),
-                  const Divider(
+                  Divider(
+                    color: Theme.of(context).dividerColor,
                     thickness: 2,
                   ),
                   if (OrderRepository().currentOrder?.status ==

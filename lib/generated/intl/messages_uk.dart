@@ -100,8 +100,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Відправити чек поштою"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Зареєструватись"),
         "stranger": MessageLookupByLibrary.simpleMessage("Незнайомцю"),
+        "sum_paid": MessageLookupByLibrary.simpleMessage("Виплачена сума"),
         "tap_to_scan":
             MessageLookupByLibrary.simpleMessage("Натисніть, щоб відсканувати"),
+        "tips": MessageLookupByLibrary.simpleMessage("Чайові"),
         "validation_card_number": MessageLookupByLibrary.simpleMessage(
             "Введіть дійсний номер картки"),
         "validation_email": MessageLookupByLibrary.simpleMessage(
@@ -120,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ви дійсно хочете вийти?"),
         "want_to_save_card":
             MessageLookupByLibrary.simpleMessage("Зберегти дані картки?"),
-        "your_order": MessageLookupByLibrary.simpleMessage("Ваше замовлення")
+        "your_order": MessageLookupByLibrary.simpleMessage("Ваше замовлення"),
+        "your_orders": MessageLookupByLibrary.simpleMessage("Ваші замовлення")
       };
 }

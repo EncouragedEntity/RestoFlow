@@ -4,15 +4,18 @@ class CardCvvTextField extends StatelessWidget {
   const CardCvvTextField({
     super.key,
     required TextEditingController cardCvvController,
+    required this.focusNode,
   }) : _cardCvvController = cardCvvController;
 
   final TextEditingController _cardCvvController;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 100,
       child: TextFormField(
+        focusNode: focusNode,
         obscureText: true,
         obscuringCharacter: "*",
         maxLength: 3,

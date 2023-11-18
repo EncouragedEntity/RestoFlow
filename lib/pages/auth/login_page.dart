@@ -74,6 +74,10 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).primaryColor,
+                          foregroundColor: Theme.of(context)
+                              .buttonTheme
+                              .colorScheme!
+                              .onBackground,
                         ),
                         child: Text(
                           S.of(context).log_in,

@@ -8,7 +8,7 @@ import 'package:resto_flow/blocs/order_bloc.dart';
 import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/blocs/states/order_state.dart';
 import 'package:resto_flow/blocs/states/product_state.dart';
-import 'package:resto_flow/pages/order/order_history.dart';
+import 'package:resto_flow/pages/order/order_history_page.dart';
 import 'package:resto_flow/pages/order/order_page.dart';
 import 'package:resto_flow/pages/products/product_home_page.dart';
 import 'package:resto_flow/pages/profile_page.dart';

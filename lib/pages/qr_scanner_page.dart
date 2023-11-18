@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
@@ -27,46 +29,54 @@ class _ScannerPageState extends State<ScannerPage> {
   QRViewController? controller;
 
   void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) async {
-      if (BlocProvider.of<OrderBloc>(context).state is OrderTableSetState) {
-        context.read<NavBloc>().add(NavEvent.menu);
-        return;
-      }
-
-      scanResult = scanData.code ?? "";
-      if (!scanResult.startsWith(qrPrefix)) {
-        Logger().e("$scanResult does not start with $qrPrefix");
-        if (ScaffoldMessenger.of(context).mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor:
-                  Theme.of(context).scaffoldBackgroundColor.withGreen(100),
-              content: Text(
-                S.current.qr_scan_error,
-                style: TextStyle(
-                  color: Theme.of(context).highlightColor,
-                ),
-              ),
-            ),
-          );
-        }
-        return;
-      }
-
-      ScaffoldMessenger.of(context).clearSnackBars();
-
-      final tableId = scanResult.substring(10);
-
+    if (mounted) {
       setState(() {
-        if (BlocProvider.of<OrderBloc>(context).state
-            is OrderTableNotSetState) {
-          context.read<OrderBloc>().add(
-                OrderSetTableEvent(tableId: tableId),
+        this.controller = controller;
+        controller.scannedDataStream.listen((scanData) async {
+          if (BlocProvider.of<OrderBloc>(context, listen: false).state
+              is OrderTableSetState) {
+            context.read<NavBloc>().add(NavEvent.menu);
+            return;
+          }
+
+          scanResult = scanData.code ?? "";
+          if (!scanResult.startsWith(qrPrefix)) {
+            Logger().e("$scanResult does not start with $qrPrefix");
+            final scaffoldMessenger = ScaffoldMessenger.of(context);
+            if (scaffoldMessenger != null) {
+              scaffoldMessenger.showSnackBar(
+                SnackBar(
+                  backgroundColor:
+                      Theme.of(context).scaffoldBackgroundColor.withGreen(100),
+                  content: Text(
+                    S.current.qr_scan_error,
+                    style: TextStyle(
+                      color: Theme.of(context).highlightColor,
+                    ),
+                  ),
+                ),
               );
-        }
+            }
+
+            return;
+          }
+
+          final scaffoldMessenger = ScaffoldMessenger.of(context);
+          if (scaffoldMessenger != null) {
+            scaffoldMessenger.clearSnackBars();
+          }
+
+          final tableId = scanResult.substring(10);
+
+          if (BlocProvider.of<OrderBloc>(context, listen: false).state
+              is OrderTableNotSetState) {
+            context.read<OrderBloc>().add(
+                  OrderSetTableEvent(tableId: tableId),
+                );
+          }
+        });
       });
-    });
+    }
   }
 
   @override

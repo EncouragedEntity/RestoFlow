@@ -31,7 +31,10 @@ class SettingsTile extends StatelessWidget {
               ),
           ],
         ),
-        if (showDivider) const Divider(),
+        if (showDivider)
+          Divider(
+            color: Theme.of(context).dividerColor,
+          ),
       ],
     );
   }

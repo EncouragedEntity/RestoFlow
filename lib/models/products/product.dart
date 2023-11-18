@@ -73,5 +73,11 @@ class Product {
     );
   }
 
-  String get formattedPrice => "${price.toStringAsFixed(2)} грн.";
+  String get formattedPrice {
+    if (price % 1 == 0) {
+      return "${price.toStringAsFixed(0)} грн.";
+    } else {
+      return "${price.toStringAsFixed(2)} грн.";
+    }
+  }
 }

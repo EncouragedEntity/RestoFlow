@@ -14,11 +14,14 @@ class OrderUserDto {
     required this.sumPaid,
   });
 
-  factory OrderUserDto.fromJson(Map<String, dynamic> json) {
-    return OrderUserDto(
-      orderId: json['orderId'],
-      userId: json['userId'],
-      sumPaid: json['sumPaid'].toDouble(),
-    );
+  factory OrderUserDto.fromJson(Map<String, dynamic> json) =>
+      _$OrderUserDtoFromJson(json);
+
+  String get formattedSumPaid {
+    if (sumPaid % 1 == 0) {
+      return sumPaid.toStringAsFixed(0);
+    } else {
+      return sumPaid.toStringAsFixed(2);
+    }
   }
 }

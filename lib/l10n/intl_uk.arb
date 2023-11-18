@@ -61,7 +61,8 @@
     "reset_table":"Скинути стіл",
     "card_number":"Номер картки",
     "desired_price":"Бажана сума",
-    "validation_card_number":"Введіть дійсний номер картки"
-
-
+    "validation_card_number":"Введіть дійсний номер картки",
+    "your_orders":"Ваші замовлення",
+    "sum_paid":"Виплачена сума",
+    "tips":"Чайові"
 }

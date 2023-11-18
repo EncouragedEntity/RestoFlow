@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:resto_flow/data/string_constants.dart';
 
@@ -13,6 +14,7 @@ class Order {
   final int? restaurantId;
   bool done = false;
   String status;
+  String? createdDate = "";
 
   Order({
     this.id,
@@ -30,6 +32,32 @@ class Order {
       return sumToPay.toStringAsFixed(0);
     } else {
       return sumToPay.toStringAsFixed(2);
+    }
+  }
+
+  String get formattedTips {
+    if (tips % 1 == 0) {
+      return tips.toStringAsFixed(0);
+    } else {
+      return tips.toStringAsFixed(2);
+    }
+  }
+
+  String get formattedDate {
+    if (createdDate?.isNotEmpty ?? false) {
+      final dateTime = DateTime.parse(createdDate!);
+      return DateFormat.yMd().format(dateTime);
+    } else {
+      return "";
+    }
+  }
+
+  String get formattedTime {
+    if (createdDate?.isNotEmpty ?? false) {
+      final dateTime = DateTime.parse(createdDate!);
+      return DateFormat.Hm().format(dateTime);
+    } else {
+      return "";
     }
   }
 

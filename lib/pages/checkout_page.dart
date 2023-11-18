@@ -37,6 +37,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
   final TextEditingController _cardExpYearController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
 
+  late final FocusNode _cardDigitsFocusNode;
+  late final FocusNode _cardExpMonthFocusNode;
+  late final FocusNode _cardExpYearFocusNode;
+  late final FocusNode _cardCvvFocusNode;
+
+  final int digitsMax = 20;
+  final int dateMax = 2;
+
   bool payPartially = false;
   bool sendReceipt = true;
   bool saveCardDetails = false;
@@ -54,6 +62,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
       _cardExpMonthController.text = details.expMonth;
       _cardExpYearController.text = details.expYear;
     }
+    _priceController.text =
+        OrderRepository().currentOrder!.sumToPay.toStringAsFixed(2);
   }
 
   @override
@@ -61,12 +71,27 @@ class _CheckoutPageState extends State<CheckoutPage> {
     setCardData();
 
     super.initState();
+
+    _cardDigitsFocusNode = FocusNode();
+    _cardExpMonthFocusNode = FocusNode();
+    _cardExpYearFocusNode = FocusNode();
+    _cardCvvFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _cardDigitsFocusNode.dispose();
+    _cardExpMonthFocusNode.dispose();
+    _cardExpYearFocusNode.dispose();
+    _cardCvvFocusNode.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.sizeOf(context).height;
 
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         StompSocketService.instance!.sendMockRequest();
@@ -110,8 +135,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CardDigitsTextField(
-                                    cardDigitsController:
-                                        _cardDigitsController),
+                                  cardDigitsController: _cardDigitsController,
+                                  focusNode: _cardDigitsFocusNode,
+                                  onChanged: (value) {
+                                    if ((value.length + 1) == digitsMax) {
+                                      _cardExpMonthFocusNode.requestFocus();
+                                    }
+                                  },
+                                  maxLength: digitsMax,
+                                ),
                                 const SizedBox(
                                   height: 10,
                                 ),
@@ -134,6 +166,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                           isMonth: true,
                                           cardDateDigitController:
                                               _cardExpMonthController,
+                                          focusNode: _cardExpMonthFocusNode,
+                                          onChanged: (value) {
+                                            if (value.length == dateMax) {
+                                              _cardExpYearFocusNode
+                                                  .requestFocus();
+                                            }
+                                          },
                                         ),
                                         const SizedBox(
                                           width: 5,
@@ -151,11 +190,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                           isMonth: false,
                                           cardDateDigitController:
                                               _cardExpYearController,
+                                          focusNode: _cardExpYearFocusNode,
+                                          onChanged: (value) {
+                                            if (value.length == dateMax) {
+                                              _cardCvvFocusNode.requestFocus();
+                                            }
+                                          },
                                         ),
                                       ],
                                     ),
                                     CardCvvTextField(
-                                        cardCvvController: _cardCvvController),
+                                      cardCvvController: _cardCvvController,
+                                      focusNode: _cardCvvFocusNode,
+                                    ),
                                   ],
                                 ),
                               ],

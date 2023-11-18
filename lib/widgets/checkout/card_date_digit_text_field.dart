@@ -7,16 +7,22 @@ class CardDateDigitTextField extends StatelessWidget {
     super.key,
     required this.cardDateDigitController,
     required this.isMonth,
+    required this.focusNode,
+    required this.onChanged,
   });
 
   final TextEditingController cardDateDigitController;
   final bool isMonth;
+  final FocusNode focusNode;
+  final void Function(String value) onChanged;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 50,
       child: TextFormField(
+        onChanged: onChanged,
+        focusNode: focusNode,
         maxLength: 2,
         autocorrect: false,
         enableSuggestions: false,

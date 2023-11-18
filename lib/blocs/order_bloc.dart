@@ -30,19 +30,20 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           tableId: event.tableId,
           onCallback: onCallback,
         ).connect();
+        try {
+          final Table table =
+              await TableRepository(hostname: hostname).getById(event.tableId);
+          OrderRepository().currentOrder = Order(
+            tableId: table.id,
+            restaurantId: table.restaurantId,
+            status: orderStatusChoosing,
+          );
 
-        final Table table =
-            await TableRepository(hostname: hostname).getById(event.tableId);
+          StompSocketService.instance!.sendMockRequest();
 
-        OrderRepository().currentOrder = Order(
-          tableId: table.id,
-          restaurantId: table.restaurantId,
-          status: orderStatusChoosing,
-        );
-
-        StompSocketService.instance!.sendMockRequest();
-
-        emit(OrderTableSetState(event.tableId));
+          emit(OrderTableSetState(event.tableId));
+          // ignore: empty_catches
+        } catch (e) {}
       },
     );
 

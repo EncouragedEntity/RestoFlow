@@ -15,7 +15,7 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       restaurantId: json['restaurantId'] as int?,
       done: json['done'] as bool? ?? false,
       status: json['status'] as String? ?? orderStatusChoosing,
-    );
+    )..createdDate = json['createdDate'] as String?;
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'id': instance.id,
@@ -26,4 +26,5 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'restaurantId': instance.restaurantId,
       'done': instance.done,
       'status': instance.status,
+      'createdDate': instance.createdDate,
     };

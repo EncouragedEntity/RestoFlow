@@ -110,6 +110,7 @@ class _MenuPageState extends State<MenuPage>
               bottom: TabBar(
                 controller: _tabController,
                 indicatorColor: Theme.of(context).highlightColor,
+                labelColor: Colors.white,
                 isScrollable: true,
                 tabs: categories.map((category) {
                   return Tab(
@@ -119,10 +120,7 @@ class _MenuPageState extends State<MenuPage>
               ),
             ),
             body: ScrollConfiguration(
-              behavior: const ScrollBehavior(
-                // ignore: deprecated_member_use
-                androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
-              ),
+              behavior: const MaterialScrollBehavior(),
               child: CustomScrollView(
                 slivers: [
                   SliverFillRemaining(

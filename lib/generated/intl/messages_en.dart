@@ -92,7 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Send receipt to email"),
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "stranger": MessageLookupByLibrary.simpleMessage("Stranger"),
+        "sum_paid": MessageLookupByLibrary.simpleMessage("Sum paid"),
         "tap_to_scan": MessageLookupByLibrary.simpleMessage("Tap to scan"),
+        "tips": MessageLookupByLibrary.simpleMessage("Tips"),
         "validation_card_number":
             MessageLookupByLibrary.simpleMessage("Enter valid card number"),
         "validation_email":
@@ -111,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you really want to log out?"),
         "want_to_save_card":
             MessageLookupByLibrary.simpleMessage("Save card details?"),
-        "your_order": MessageLookupByLibrary.simpleMessage("Your order")
+        "your_order": MessageLookupByLibrary.simpleMessage("Your order"),
+        "your_orders": MessageLookupByLibrary.simpleMessage("Your orders")
       };
 }

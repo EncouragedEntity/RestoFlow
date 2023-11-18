@@ -61,6 +61,8 @@
     "reset_table":"Reset table",
     "card_number":"Card number",
     "desired_price":"Price to pay",
-    "validation_card_number":"Enter valid card number"
-
+    "validation_card_number":"Enter valid card number",
+    "your_orders":"Your orders",
+    "sum_paid":"Sum paid",
+    "tips":"Tips"
 }

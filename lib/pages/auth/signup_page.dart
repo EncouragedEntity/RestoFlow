@@ -97,6 +97,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).primaryColor,
+                          foregroundColor: Theme.of(context)
+                              .buttonTheme
+                              .colorScheme!
+                              .onBackground,
                         ),
                         child: Text(
                           S.of(context).sign_up,

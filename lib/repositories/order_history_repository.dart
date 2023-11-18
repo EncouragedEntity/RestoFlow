@@ -18,13 +18,17 @@ class OrderHistoryRepository {
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> jsonList = json.decode(response.body);
+        final dynamic jsonResponse = json.decode(response.body);
 
-        List<OrderHistoryResponseDto> orderHistoryList = jsonList
-            .map((json) => OrderHistoryResponseDto.fromJson(json))
-            .toList();
+        if (jsonResponse is List) {
+          List<OrderHistoryResponseDto> orderHistoryList = jsonResponse
+              .map((json) => OrderHistoryResponseDto.fromJson(json))
+              .toList();
 
-        return orderHistoryList;
+          return orderHistoryList;
+        } else {
+          throw Exception("Invalid response format. Expected a list.");
+        }
       } else {
         throw Exception(
             "Failed to load order history. Status code: ${response.statusCode}");

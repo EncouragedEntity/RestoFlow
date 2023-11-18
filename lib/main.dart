@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,6 +12,7 @@ import 'package:resto_flow/blocs/product_bloc.dart';
 import 'package:resto_flow/blocs/states/auth_state.dart';
 import 'package:resto_flow/generated/l10n.dart';
 import 'package:resto_flow/pages/home_page.dart';
+import 'package:resto_flow/repositories/measurement_unit_repository.dart';
 import 'package:resto_flow/repositories/order_repository.dart';
 import 'package:resto_flow/repositories/user_repository.dart';
 import 'blocs/nav_bloc.dart';
@@ -30,6 +32,24 @@ import 'data/color_constants.dart';
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  var connectivityResult = await Connectivity().checkConnectivity();
+  if (connectivityResult == ConnectivityResult.none) {
+    runApp(
+      const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Center(
+            child: Text("No internet connection. Please check your network."),
+          ),
+        ),
+      ),
+    );
+    FlutterNativeSplash.remove();
+
+    return;
+  }
+
   var serverLink = "";
   AuthState defaultState = AuthUnauthenticated();
   try {
@@ -39,6 +59,7 @@ void main() async {
       if (user != null) {
         defaultState = AuthAuthenticated(user);
       }
+      await MeasurementUnitRepository().getAll();
     }
   } on Exception catch (e) {
     Logger().e(e.toString());
