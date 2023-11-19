@@ -60,6 +60,7 @@
     "clear_details":"Очистити реквізити",
     "reset_table":"Скинути стіл",
     "card_number":"Номер картки",
+    "expiration_date":"Придатна до",
     "desired_price":"Бажана сума",
     "validation_card_number":"Введіть дійсний номер картки",
     "your_orders":"Ваші замовлення",

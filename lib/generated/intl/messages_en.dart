@@ -54,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "empty_here":
             MessageLookupByLibrary.simpleMessage("Crickets sing here..."),
         "error": MessageLookupByLibrary.simpleMessage("error"),
+        "expiration_date":
+            MessageLookupByLibrary.simpleMessage("Expiration date"),
         "firstname": MessageLookupByLibrary.simpleMessage("First name"),
         "go_to_login": MessageLookupByLibrary.simpleMessage("Go to login page"),
         "go_to_menu": MessageLookupByLibrary.simpleMessage("Go to menu page"),

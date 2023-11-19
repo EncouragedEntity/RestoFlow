@@ -660,6 +660,16 @@ class S {
     );
   }
 
+  /// `Expiration date`
+  String get expiration_date {
+    return Intl.message(
+      'Expiration date',
+      name: 'expiration_date',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Price to pay`
   String get desired_price {
     return Intl.message(

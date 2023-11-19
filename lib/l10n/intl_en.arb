@@ -60,6 +60,7 @@
     "clear_details":"Clear details",
     "reset_table":"Reset table",
     "card_number":"Card number",
+    "expiration_date":"Expiration date",
     "desired_price":"Price to pay",
     "validation_card_number":"Enter valid card number",
     "your_orders":"Your orders",

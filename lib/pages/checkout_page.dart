@@ -148,7 +148,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   height: 10,
                                 ),
                                 Text(
-                                  "Expiration date",
+                                  S.current.expiration_date,
                                   style: TextStyle(
                                       color: Theme.of(context).highlightColor),
                                 ),

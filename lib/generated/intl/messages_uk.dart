@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "empty_here":
             MessageLookupByLibrary.simpleMessage("Тут співають цвіркуни..."),
         "error": MessageLookupByLibrary.simpleMessage("Помилка"),
+        "expiration_date": MessageLookupByLibrary.simpleMessage("Придатна до"),
         "firstname": MessageLookupByLibrary.simpleMessage("Ім\'я"),
         "go_to_login":
             MessageLookupByLibrary.simpleMessage("Перейти до сторінки входу"),
