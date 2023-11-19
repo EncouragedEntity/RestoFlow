@@ -98,7 +98,7 @@ packages:
     source: hosted
     version: "2.4.1"
   build_runner:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: build_runner
       sha256: "10c6bcdbf9d049a0b666702cf1cee4ddfdc38f02a19d35ae392863b47519848b"
@@ -343,7 +343,7 @@ packages:
     source: hosted
     version: "3.3.1"
   flutter_launcher_icons:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_launcher_icons
       sha256: "526faf84284b86a4cb36d20a5e45147747b7563d921373d4ee0559c54fcdbcea"
@@ -801,10 +801,10 @@ packages:
     dependency: transitive
     description:
       name: plugin_platform_interface
-      sha256: da3fdfeccc4d4ff2da8f8c556704c08f912542c5fb3cf2233ed75372384a034d
+      sha256: f4f88d4a900933e7267e2b353594774fc0d07fb072b47eedcd5b54e1ea3269f8
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.7"
   pointycastle:
     dependency: transitive
     description:

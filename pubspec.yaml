@@ -48,11 +48,9 @@ dependencies:
   jwt_decoder: ^2.0.1
   localization: ^2.1.0
   intl: ^0.18.1
-  intl_utils: ^2.8.5
   google_fonts: ^6.1.0
   permission_handler: ^11.0.1
   flutter_secure_storage: ^9.0.0
-  json_serializable: ^6.7.1
   json_annotation: ^4.8.1
   flutter_native_splash: ^2.3.4
   flutter_sticky_header: ^0.6.5
@@ -66,6 +64,10 @@ dependencies:
   provider: ^6.1.1
   restart_app: ^1.2.1
   connectivity_plus: ^5.0.1
+  flutter_launcher_icons: ^0.13.1
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  intl_utils: ^2.8.5
 
 
 dev_dependencies:
@@ -78,8 +80,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  build_runner: ^2.4.6
-  flutter_launcher_icons: ^0.13.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

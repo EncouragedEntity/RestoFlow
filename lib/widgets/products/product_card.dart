@@ -132,7 +132,7 @@ class _ProductCardState extends State<ProductCard> {
                 fit: BoxFit.fitHeight,
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: !displayMode ? 10 : 0),
             Text(
               productName,
               style: TextStyle(fontSize: !displayMode ? 20 : 14),
@@ -156,7 +156,7 @@ class _ProductCardState extends State<ProductCard> {
                     widget.product.formattedPrice,
                     style: TextStyle(fontSize: !displayMode ? 16 : 14),
                   ),
-                  boxHeight: !displayMode ? 50 : 34,
+                  boxHeight: !displayMode ? 50 : 40,
                 ),
                 ProductDetailIcon(
                   icon: Icon(Icons.access_time, size: !displayMode ? 24 : 18),
@@ -164,7 +164,7 @@ class _ProductCardState extends State<ProductCard> {
                     "${widget.product.cookingTime} хв.",
                     style: TextStyle(fontSize: !displayMode ? 16 : 14),
                   ),
-                  boxHeight: !displayMode ? 50 : 34,
+                  boxHeight: !displayMode ? 50 : 40,
                 ),
               ],
             )
